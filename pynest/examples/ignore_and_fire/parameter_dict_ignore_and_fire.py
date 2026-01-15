@@ -32,8 +32,9 @@ pars = {}
 pars["model_name"] = "TwoPopulationNetworkPlastic"  # Network model name
 
 # network and connectivity parameters
-pars["N"] = 12500  # total number of neurons
-pars["K"] = 1250  # total number of inputs per neuron from local network
+# rmoved last 0 to make smaller
+pars["N"] = 1250  # total number of neurons
+pars["K"] = 125  # total number of inputs per neuron from local network
 pars["beta"] = 0.8  # fraction of excitatory neurons/inputs
 
 pars["allow_autapses"] = False
