@@ -82,9 +82,12 @@ jobs:
         run: |
           mkdir -p ${{ runner.tool_cache }}/nest
           cd ${{ runner.tool_cache }}/nest
-          tar -xzf ${{ github.workspace }}/nest-installation.tar.gz
-          # Export NEST install dir for subsequent steps
+          # Use --strip-components=1 to remove the nest-installation/ top-level directory
+          tar -xzf ${{ github.workspace }}/nest-installation.tar.gz --strip-components=1
+          # Export paths for subsequent steps (nest_vars.sh has hardcoded build paths, so set manually)
           echo "NEST_INSTALL_DIR=${{ runner.tool_cache }}/nest" >> $GITHUB_ENV
+          echo "PYTHONPATH=${{ runner.tool_cache }}/nest/lib/python3.10/site-packages" >> $GITHUB_ENV
+          echo "${{ runner.tool_cache }}/nest/bin" >> $GITHUB_PATH
 
       - name: "Install Python dependencies"
         run: |
@@ -93,13 +96,11 @@ jobs:
 
       - name: "Verify NEST installation"
         run: |
-          source ${{ env.NEST_INSTALL_DIR }}/bin/nest_vars.sh
           python -c "import nest; print(f'NEST version: {nest.version()}'); nest.help()"
 
       - name: "Run ignore-and-fire example"
         working-directory: pynest/examples/ignore_and_fire
         run: |
-          source ${{ env.NEST_INSTALL_DIR }}/bin/nest_vars.sh
           # Create output directory for figures
           mkdir -p figures
           snakemake -c4
