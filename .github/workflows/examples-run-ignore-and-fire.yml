@@ -1,0 +1,140 @@
+#
+# Workflow template for running ignore-and-fire example in nest-simulator-examples repo
+#
+# This workflow should be copied to nest/nest-simulator-examples/.github/workflows/
+#
+# Prerequisites:
+# 1. Create a Personal Access Token (PAT) with 'actions:read' permission
+# 2. Add it as a secret named 'GH_PAT' in nest-simulator-examples repository
+# 3. Update the workflow_run_id or use workflow_dispatch to specify the run ID
+#
+name: "Run ignore-and-fire example"
+
+on:
+  workflow_dispatch:
+    inputs:
+      nest_workflow_run_id:
+        description: 'Workflow run ID from nest-simulator (leave empty for latest successful run)'
+        required: false
+        type: string
+  schedule:
+    # Run daily to test with latest NEST builds
+    - cron: '0 2 * * *'
+  # Uncomment to run on push/PR:
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+
+jobs:
+  run-ignore-and-fire:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+          disable-telemetry: true
+
+      - name: "Checkout examples repository"
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          fetch-depth: 0
+
+      - name: "Set up Python 3.x"
+        uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: "3.10"
+
+      - name: "Get latest successful workflow run ID"
+        if: ${{ github.event.inputs.nest_workflow_run_id == '' }}
+        id: get-run-id
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          github-token: ${{ secrets.GH_PAT }}
+          script: |
+            const { data: runs } = await github.rest.actions.listWorkflowRuns({
+              owner: 'nest',
+              repo: 'nest-simulator',
+              workflow_id: 'nestbuildmatrix.yml',
+              status: 'success',
+              per_page: 1
+            });
+
+            if (runs.workflow_runs.length === 0) {
+              throw new Error('No successful workflow runs found');
+            }
+
+            const runId = runs.workflow_runs[0].id;
+            core.setOutput('run_id', runId);
+            return runId;
+
+      - name: "Download NEST installation artifact"
+        uses: actions/download-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: nest-installation
+          github-token: ${{ secrets.GH_PAT }}
+          repository: nest/nest-simulator
+          run-id: ${{ github.event.inputs.nest_workflow_run_id || steps.get-run-id.outputs.run_id }}
+
+      - name: "Extract and install NEST"
+        run: |
+          mkdir -p ${{ runner.tool_cache }}/nest
+          cd ${{ runner.tool_cache }}/nest
+          tar -xzf ${{ github.workspace }}/nest-installation.tar.gz
+          echo "${{ runner.tool_cache }}/nest/bin" >> $GITHUB_PATH
+          export NEST_INSTALL_DIR="${{ runner.tool_cache }}/nest"
+          echo "NEST_INSTALL_DIR=${{ runner.tool_cache }}/nest" >> $GITHUB_ENV
+
+      - name: "Install Python dependencies"
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy matplotlib snakemake
+
+      - name: "Verify NEST installation"
+        run: |
+          python -c "import nest; print(f'NEST version: {nest.version()}')"
+          nest.help()
+
+      - name: "Run ignore-and-fire example"
+        working-directory: pynest/examples/ignore_and_fire
+        run: |
+          # Create output directory for figures
+          mkdir -p figures
+          snakemake -c4
+
+          # Run the example to generate reference data
+          # This simulates the network and stores spike/connectivity data
+          #python generate_reference_data-ignore_and_fire.py ignore_and_fire
+
+          # Generate figures from the simulation data
+          # This creates PNG files in the figures/ directory
+          #python generate_reference_figures-ignore_and_fire.py ignore_and_fire
+
+          # List generated files
+          echo "Generated figures:"
+          find figures -type f -name "*.png" 2>/dev/null || find . -name "*.png" | head -20
+
+      - name: "Collect generated figures"
+        run: |
+          mkdir -p example-figures/ignore-and-fire
+          # Copy all generated figures
+          find pynest/examples/ignore_and_fire -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" \) -exec cp {} example-figures/ignore-and-fire/ \;
+          ls -lh example-figures/ignore-and-fire/
+
+      - name: "Upload figures as artifacts"
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        if: always()
+        with:
+          name: ignore-and-fire-figures
+          path: example-figures/ignore-and-fire/
+          retention-days: 90
+
+      - name: "Deploy figures to GitHub Pages"
+        if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        uses: peaceiris/actions-gh-pages@373f7f263a76c65805d69afad1f17a887e50199b # v3.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: example-figures
+          destination_dir: figures
+          keep_files: true
