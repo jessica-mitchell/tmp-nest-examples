@@ -95,7 +95,7 @@ jobs:
 
       - name: "Verify NEST installation"
         run: |
-          python -c "import nest; print(f'NEST version: {nest.version()}'); nest.help()"
+          python -c "import nest; nest.help()"
 
       - name: "Run ignore-and-fire example"
         working-directory: pynest/examples/ignore_and_fire
