@@ -54,7 +54,7 @@ jobs:
           github-token: ${{ secrets.GH_PAT }}
           script: |
             const { data: runs } = await github.rest.actions.listWorkflowRuns({
-              owner: 'nest',
+              owner: 'jessica-mitchell',
               repo: 'nest-simulator',
               workflow_id: 'nestbuildmatrix.yml',
               status: 'success',
@@ -74,7 +74,7 @@ jobs:
         with:
           name: nest-installation
           github-token: ${{ secrets.GH_PAT }}
-          repository: nest/nest-simulator
+          repository: jessica-mitchell/nest-simulator
           run-id: ${{ github.event.inputs.nest_workflow_run_id || steps.get-run-id.outputs.run_id }}
 
       - name: "Extract and install NEST"
@@ -93,8 +93,7 @@ jobs:
 
       - name: "Verify NEST installation"
         run: |
-          python -c "import nest; print(f'NEST version: {nest.version()}')"
-          nest.help()
+          python -c "import nest; print(f'NEST version: {nest.version()}'); nest.help()"
 
       - name: "Run ignore-and-fire example"
         working-directory: pynest/examples/ignore_and_fire
