@@ -91,7 +91,7 @@ jobs:
       - name: "Install Python dependencies"
         run: |
           python -m pip install --upgrade pip
-          pip install numpy scipy matplotlib "pulp>=2.7.0" snakemake
+          pip install numpy scipy matplotlib "pulp<2.8.0" snakemake
 
       - name: "Verify NEST installation"
         run: |
