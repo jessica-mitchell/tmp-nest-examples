@@ -78,16 +78,15 @@ jobs:
           repository: jessica-mitchell/nest-simulator
           run-id: ${{ github.event.inputs.nest_workflow_run_id || steps.get-run-id.outputs.run_id }}
 
-      - name: "Extract and install NEST"
+      - name: "Extract NEST installation"
         run: |
-          mkdir -p ${{ runner.tool_cache }}/nest
-          cd ${{ runner.tool_cache }}/nest
-          # Use --strip-components=1 to remove the nest-installation/ top-level directory
-          tar -xzf ${{ github.workspace }}/nest-installation.tar.gz --strip-components=1
-          # Export paths for subsequent steps (nest_vars.sh has hardcoded build paths, so set manually)
-          echo "NEST_INSTALL_DIR=${{ runner.tool_cache }}/nest" >> $GITHUB_ENV
-          echo "PYTHONPATH=${{ runner.tool_cache }}/nest/lib/python3.10/site-packages" >> $GITHUB_ENV
-          echo "${{ runner.tool_cache }}/nest/bin" >> $GITHUB_PATH
+          sudo mkdir -p /opt/nest
+          sudo tar -xzf nest-installation.tar.gz -C /opt/nest --strip-components=1
+
+      - name: "Set up NEST environment"
+        run: |
+          echo "/opt/nest/bin" >> $GITHUB_PATH
+          echo "PYTHONPATH=/opt/nest/lib/python3.10/site-packages:$PYTHONPATH" >> $GITHUB_ENV
 
       - name: "Install Python dependencies"
         run: |
