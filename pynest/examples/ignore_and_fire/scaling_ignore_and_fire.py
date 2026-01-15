@@ -40,7 +40,8 @@ from matplotlib import gridspec
 ##########################################################
 # parameters
 neuron_models = ["iaf_psc_alpha", "ignore_and_fire"]  # neuron models
-Ns = numpy.arange(1250, 15000, 1250)  # network sizes
+# shrunk network sizes for scaling 
+Ns = numpy.arange(125, 1500, 125)  # network sizes
 
 data_path_root = "./data/"  # root of path to simulation data
 
