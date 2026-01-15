@@ -58,6 +58,7 @@ jobs:
               repo: 'nest-simulator',
               workflow_id: 'nestbuildmatrix.yml',
               status: 'success',
+              branch: 'test-artifact-ci',
               per_page: 1
             });
 
