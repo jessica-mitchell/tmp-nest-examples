@@ -84,8 +84,10 @@ jobs:
           cd ${{ runner.tool_cache }}/nest
           tar -xzf ${{ github.workspace }}/nest-installation.tar.gz
           echo "${{ runner.tool_cache }}/nest/bin" >> $GITHUB_PATH
-          export NEST_INSTALL_DIR="${{ runner.tool_cache }}/nest"
           echo "NEST_INSTALL_DIR=${{ runner.tool_cache }}/nest" >> $GITHUB_ENV
+          # Add NEST Python module to PYTHONPATH
+          PYNEST_PATH=$(find ${{ runner.tool_cache }}/nest -type d -name "site-packages" | head -1)
+          echo "PYTHONPATH=${PYNEST_PATH}:${PYTHONPATH}" >> $GITHUB_ENV
 
       - name: "Install Python dependencies"
         run: |
