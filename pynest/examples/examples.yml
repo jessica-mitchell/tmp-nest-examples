@@ -1,0 +1,644 @@
+# NEST Examples Configuration
+#
+# This file lists all runnable examples for:
+# 1. CI testing workflow (run examples and collect outputs)
+# 2. Notebook conversion workflow (convert Python to Jupyter notebooks)
+#
+# Fields:
+#   name: Unique identifier for the example
+#   path: Relative path from pynest/examples/
+#   type: Execution type (python, snakemake, skip)
+#   convert_to_notebook: Whether to convert to Jupyter notebook
+#   category: Grouping for organization
+#   notes: Optional notes about special requirements
+#
+
+examples:
+  # ===========================================================================
+  # Top-level single-file examples
+  # ===========================================================================
+
+  - name: aeif_cond_beta_multisynapse
+    path: aeif_cond_beta_multisynapse.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: artificial_synchrony
+    path: artificial_synchrony.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: balancedneuron
+    path: balancedneuron.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: brette_gerstner_fig_2c
+    path: brette_gerstner_fig_2c.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: brette_gerstner_fig_3d
+    path: brette_gerstner_fig_3d.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: BrodyHopfield
+    path: BrodyHopfield.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: brunel_alpha_evolution_strategies
+    path: brunel_alpha_evolution_strategies.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: brunel_alpha_nest
+    path: brunel_alpha_nest.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: brunel_delta_nest
+    path: brunel_delta_nest.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: brunel_exp_multisynapse_nest
+    path: brunel_exp_multisynapse_nest.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: brunel_siegert_nest
+    path: brunel_siegert_nest.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: CampbellSiegert
+    path: CampbellSiegert.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: clopath_synapse_small_network
+    path: clopath_synapse_small_network.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: clopath_synapse_spike_pairing
+    path: clopath_synapse_spike_pairing.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: correlospinmatrix_detector_two_neuron
+    path: correlospinmatrix_detector_two_neuron.py
+    type: python
+    convert_to_notebook: true
+    category: devices
+
+  - name: cross_check_mip_corrdet
+    path: cross_check_mip_corrdet.py
+    type: python
+    convert_to_notebook: true
+    category: devices
+
+  - name: csa_example
+    path: csa_example.py
+    type: python
+    convert_to_notebook: true
+    category: connectivity
+    notes: Requires CSA library
+
+  - name: csa_spatial_example
+    path: csa_spatial_example.py
+    type: python
+    convert_to_notebook: true
+    category: connectivity
+    notes: Requires CSA library
+
+  - name: evaluate_quantal_stp_synapse
+    path: evaluate_quantal_stp_synapse.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: evaluate_tsodyks2_synapse
+    path: evaluate_tsodyks2_synapse.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: gap_junctions_inhibitory_network
+    path: gap_junctions_inhibitory_network.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: gap_junctions_two_neurons
+    path: gap_junctions_two_neurons.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: gif_cond_exp_multisynapse
+    path: gif_cond_exp_multisynapse.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: gif_pop_psc_exp
+    path: gif_pop_psc_exp.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: gif_population
+    path: gif_population.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: glif_cond_neuron
+    path: glif_cond_neuron.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: glif_psc_double_alpha_neuron
+    path: glif_psc_double_alpha_neuron.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: glif_psc_neuron
+    path: glif_psc_neuron.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: hh_phaseplane
+    path: hh_phaseplane.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: hh_psc_alpha
+    path: hh_psc_alpha.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: hpc_benchmark
+    path: hpc_benchmark.py
+    type: python
+    convert_to_notebook: true
+    category: benchmark
+
+  - name: iaf_tum_2000_short_term_depression
+    path: iaf_tum_2000_short_term_depression.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: iaf_tum_2000_short_term_facilitation
+    path: iaf_tum_2000_short_term_facilitation.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: if_curve
+    path: if_curve.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: intrinsic_currents_spiking
+    path: intrinsic_currents_spiking.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: intrinsic_currents_subthreshold
+    path: intrinsic_currents_subthreshold.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: lin_rate_ipn_network
+    path: lin_rate_ipn_network.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: mc_neuron
+    path: mc_neuron.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: multimeter_file
+    path: multimeter_file.py
+    type: python
+    convert_to_notebook: true
+    category: devices
+
+  - name: one_neuron
+    path: one_neuron.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: one_neuron_with_noise
+    path: one_neuron_with_noise.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: plot_weight_matrices
+    path: plot_weight_matrices.py
+    type: python
+    convert_to_notebook: true
+    category: visualization
+
+  - name: precise_spiking
+    path: precise_spiking.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: pulsepacket
+    path: pulsepacket.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: rate_neuron_dm
+    path: rate_neuron_dm.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: recording_demo
+    path: recording_demo.py
+    type: python
+    convert_to_notebook: true
+    category: devices
+
+  - name: repeated_stimulation
+    path: repeated_stimulation.py
+    type: python
+    convert_to_notebook: true
+    category: devices
+
+  - name: sensitivity_to_perturbation
+    path: sensitivity_to_perturbation.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: sinusoidal_gamma_generator
+    path: sinusoidal_gamma_generator.py
+    type: python
+    convert_to_notebook: true
+    category: devices
+
+  - name: sinusoidal_poisson_generator
+    path: sinusoidal_poisson_generator.py
+    type: python
+    convert_to_notebook: true
+    category: devices
+
+  - name: store_restore_network
+    path: store_restore_network.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  - name: structural_plasticity
+    path: structural_plasticity.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: synapsecollection
+    path: synapsecollection.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: testiaf
+    path: testiaf.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: twoneurons
+    path: twoneurons.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: urbanczik_synapse_example
+    path: urbanczik_synapse_example.py
+    type: python
+    convert_to_notebook: true
+    category: synapses
+
+  - name: vinit_example
+    path: vinit_example.py
+    type: python
+    convert_to_notebook: true
+    category: neurons
+
+  - name: wang_decision_making
+    path: wang_decision_making.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  # ===========================================================================
+  # astrocytes/ - Multiple independent examples
+  # ===========================================================================
+
+  - name: astrocyte_brunel_bernoulli
+    path: astrocytes/astrocyte_brunel_bernoulli.py
+    type: python
+    convert_to_notebook: true
+    category: astrocytes
+
+  - name: astrocyte_brunel_fixed_indegree
+    path: astrocytes/astrocyte_brunel_fixed_indegree.py
+    type: python
+    convert_to_notebook: true
+    category: astrocytes
+
+  - name: astrocyte_interaction
+    path: astrocytes/astrocyte_interaction.py
+    type: python
+    convert_to_notebook: true
+    category: astrocytes
+
+  - name: astrocyte_single
+    path: astrocytes/astrocyte_single.py
+    type: python
+    convert_to_notebook: true
+    category: astrocytes
+
+  - name: astrocyte_small_network
+    path: astrocytes/astrocyte_small_network.py
+    type: python
+    convert_to_notebook: true
+    category: astrocytes
+
+  # ===========================================================================
+  # brette_et_al_2007/ - Multiple independent examples
+  # ===========================================================================
+
+  - name: brette_et_al_2007_benchmark
+    path: brette_et_al_2007/brette_et_al_2007_benchmark.py
+    type: python
+    convert_to_notebook: true
+    category: benchmark
+
+  - name: coba
+    path: brette_et_al_2007/coba.py
+    type: python
+    convert_to_notebook: true
+    category: benchmark
+
+  - name: cuba
+    path: brette_et_al_2007/cuba.py
+    type: python
+    convert_to_notebook: true
+    category: benchmark
+
+  - name: cuba_ps
+    path: brette_et_al_2007/cuba_ps.py
+    type: python
+    convert_to_notebook: true
+    category: benchmark
+
+  - name: cuba_stdp
+    path: brette_et_al_2007/cuba_stdp.py
+    type: python
+    convert_to_notebook: true
+    category: benchmark
+
+  - name: hh_coba
+    path: brette_et_al_2007/hh_coba.py
+    type: python
+    convert_to_notebook: true
+    category: benchmark
+
+  # ===========================================================================
+  # compartmental_model/ - Multiple independent examples
+  # ===========================================================================
+
+  - name: receptors_and_current
+    path: compartmental_model/receptors_and_current.py
+    type: python
+    convert_to_notebook: true
+    category: compartmental
+
+  - name: two_comps
+    path: compartmental_model/two_comps.py
+    type: python
+    convert_to_notebook: true
+    category: compartmental
+
+  # ===========================================================================
+  # eprop_plasticity/ - Multiple independent examples
+  # ===========================================================================
+
+  - name: eprop_supervised_classification_evidence_accumulation
+    path: eprop_plasticity/eprop_supervised_classification_evidence-accumulation_bsshslm_2020.py
+    type: python
+    convert_to_notebook: true
+    category: eprop
+
+  - name: eprop_supervised_classification_neuromorphic_mnist
+    path: eprop_plasticity/eprop_supervised_classification_neuromorphic_mnist.py
+    type: python
+    convert_to_notebook: true
+    category: eprop
+
+  - name: eprop_supervised_regression_handwriting
+    path: eprop_plasticity/eprop_supervised_regression_handwriting_bsshslm_2020.py
+    type: python
+    convert_to_notebook: true
+    category: eprop
+
+  - name: eprop_supervised_regression_lemniscate
+    path: eprop_plasticity/eprop_supervised_regression_lemniscate_bsshslm_2020.py
+    type: python
+    convert_to_notebook: true
+    category: eprop
+
+  - name: eprop_supervised_regression_sine_waves
+    path: eprop_plasticity/eprop_supervised_regression_sine-waves.py
+    type: python
+    convert_to_notebook: true
+    category: eprop
+
+  - name: eprop_supervised_regression_sine_waves_bsshslm
+    path: eprop_plasticity/eprop_supervised_regression_sine-waves_bsshslm_2020.py
+    type: python
+    convert_to_notebook: true
+    category: eprop
+
+  # ===========================================================================
+  # spatial/ - Multiple independent examples
+  # ===========================================================================
+
+  - name: spatial_conncomp
+    path: spatial/conncomp.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_conncon_sources
+    path: spatial/conncon_sources.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_conncon_targets
+    path: spatial/conncon_targets.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_connex
+    path: spatial/connex.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_connex_ew
+    path: spatial/connex_ew.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_ctx_2n
+    path: spatial/ctx_2n.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_gaussex
+    path: spatial/gaussex.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_grid_iaf
+    path: spatial/grid_iaf.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_grid_iaf_irr
+    path: spatial/grid_iaf_irr.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_grid_iaf_oc
+    path: spatial/grid_iaf_oc.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_nodes_source_target
+    path: spatial/nodes_source_target.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_test_3d
+    path: spatial/test_3d.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_test_3d_exp
+    path: spatial/test_3d_exp.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  - name: spatial_test_3d_gauss
+    path: spatial/test_3d_gauss.py
+    type: python
+    convert_to_notebook: true
+    category: spatial
+
+  # ===========================================================================
+  # Subdirectories with single main example + helpers
+  # ===========================================================================
+
+  # EI_clustered_network/ - run_simulation.py is the main entry point
+  # Helpers: helper.py, network.py, network_params.py, sim_params.py, stimulus_params.py
+  - name: EI_clustered_network
+    path: EI_clustered_network/run_simulation.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  # pong/ - run_simulations.py is the main entry point
+  # Helpers: networks.py, pong.py, generate_gif.py
+  - name: pong
+    path: pong/run_simulations.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  # sonata_example/ - single file
+  - name: sonata_network
+    path: sonata_example/sonata_network.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+    notes: Requires SONATA data files
+
+  # sudoku/ - sudoku_solver.py is the main entry point
+  # Helpers: helpers_sudoku.py, sudoku_net.py, plot_progress.py
+  - name: sudoku
+    path: sudoku/sudoku_solver.py
+    type: python
+    convert_to_notebook: true
+    category: networks
+
+  # ===========================================================================
+  # Special cases
+  # ===========================================================================
+
+  # ignore_and_fire/ - Uses Snakemake for orchestration
+  - name: ignore_and_fire
+    path: ignore_and_fire/
+    type: snakemake
+    convert_to_notebook: false
+    category: networks
+    run_command: snakemake -c4
+
+  # music_cont_out_proxy_example/ - Requires MUSIC library (MPI-based)
+  # This example requires special setup and is typically skipped in CI
+  - name: music_cont_out_proxy
+    path: music_cont_out_proxy_example/nest_script.py
+    type: skip
+    convert_to_notebook: false
+    category: special
+    notes: Requires MUSIC library and special MPI setup
