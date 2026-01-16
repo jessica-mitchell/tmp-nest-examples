@@ -84,14 +84,15 @@ jobs:
 
           # Extract examples with type=python from config
           # Output format: {"include": [{"name": "...", "path": "..."}, ...]}
+          # Use -I=0 to output compact single-line JSON
           FILTER="${{ github.event.inputs.example_filter }}"
 
           if [ -n "$FILTER" ]; then
             # Filter examples by name pattern
-            MATRIX=$(yq -o=json '.examples | map(select(.type == "python" and .name | test("'"$FILTER"'"))) | {"include": .}' pynest/examples/examples.yml)
+            MATRIX=$(yq -o=json -I=0 '.examples | map(select(.type == "python" and .name | test("'"$FILTER"'"))) | {"include": .}' pynest/examples/examples.yml)
           else
             # All python examples
-            MATRIX=$(yq -o=json '.examples | map(select(.type == "python")) | {"include": .}' pynest/examples/examples.yml)
+            MATRIX=$(yq -o=json -I=0 '.examples | map(select(.type == "python")) | {"include": .}' pynest/examples/examples.yml)
           fi
 
           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
