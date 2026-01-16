@@ -1,0 +1,288 @@
+#
+# Workflow for running NEST Python examples using artifacts from nest-simulator repo
+#
+# Reads examples.yml config and runs examples in parallel using matrix strategy.
+# Collects generated figures and deploys to GitHub Pages.
+#
+# Prerequisites:
+# 1. Create a Personal Access Token (PAT) with 'actions:read' permission
+# 2. Add it as a secret named 'GH_PAT' in this repository
+#
+name: "Run NEST examples"
+
+on:
+  workflow_dispatch:
+    inputs:
+      nest_workflow_run_id:
+        description: 'Workflow run ID from nest-simulator (leave empty for latest successful run)'
+        required: false
+        type: string
+      example_filter:
+        description: 'Run only examples matching this pattern (e.g., "brunel" or "spatial_"). Leave empty for all.'
+        required: false
+        type: string
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Job 1: Read config and generate matrix
+  # ---------------------------------------------------------------------------
+  prepare:
+    runs-on: ubuntu-22.04
+    outputs:
+      matrix: ${{ steps.generate-matrix.outputs.matrix }}
+      run_id: ${{ steps.get-run-id.outputs.run_id }}
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+          disable-telemetry: true
+
+      - name: "Checkout repository"
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: "Get latest successful workflow run ID"
+        if: ${{ github.event.inputs.nest_workflow_run_id == '' }}
+        id: get-run-id
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          github-token: ${{ secrets.GH_PAT }}
+          script: |
+            // TODO: Update owner/repo/branch for production
+            const { data: runs } = await github.rest.actions.listWorkflowRuns({
+              owner: 'jessica-mitchell',
+              repo: 'nest-simulator',
+              workflow_id: 'nestbuildmatrix.yml',
+              status: 'success',
+              branch: 'test-artifact-ci',
+              per_page: 1
+            });
+
+            if (runs.workflow_runs.length === 0) {
+              throw new Error('No successful workflow runs found');
+            }
+
+            core.setOutput('run_id', runs.workflow_runs[0].id);
+
+      - name: "Set run ID output"
+        id: set-run-id
+        run: |
+          if [ -n "${{ github.event.inputs.nest_workflow_run_id }}" ]; then
+            echo "run_id=${{ github.event.inputs.nest_workflow_run_id }}" >> $GITHUB_OUTPUT
+          else
+            echo "run_id=${{ steps.get-run-id.outputs.run_id }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: "Generate example matrix from config"
+        id: generate-matrix
+        run: |
+          # Install yq for YAML parsing
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.35.1/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+          # Extract examples with type=python from config
+          # Output format: {"include": [{"name": "...", "path": "..."}, ...]}
+          FILTER="${{ github.event.inputs.example_filter }}"
+
+          if [ -n "$FILTER" ]; then
+            # Filter examples by name pattern
+            MATRIX=$(yq -o=json '.examples | map(select(.type == "python" and .name | test("'"$FILTER"'"))) | {"include": .}' pynest/examples/examples.yml)
+          else
+            # All python examples
+            MATRIX=$(yq -o=json '.examples | map(select(.type == "python")) | {"include": .}' pynest/examples/examples.yml)
+          fi
+
+          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
+
+          # Log count for visibility
+          COUNT=$(echo "$MATRIX" | yq '.include | length')
+          echo "Found $COUNT examples to run"
+
+  # ---------------------------------------------------------------------------
+  # Job 2: Run examples in parallel
+  # ---------------------------------------------------------------------------
+  run-example:
+    needs: prepare
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+          disable-telemetry: true
+
+      - name: "Checkout repository"
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: "Set up Python 3.x"
+        uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: "3.10"
+
+      - name: "Download NEST installation artifact"
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+        with:
+          name: nest-installation
+          github-token: ${{ secrets.GH_PAT }}
+          # TODO: Update repository for production
+          repository: jessica-mitchell/nest-simulator
+          run-id: ${{ needs.prepare.outputs.run_id || github.event.inputs.nest_workflow_run_id }}
+
+      - name: "Extract NEST installation"
+        run: |
+          sudo mkdir -p /opt/nest
+          sudo tar -xzf nest-installation.tar.gz -C /opt/nest --strip-components=1
+
+      - name: "Set up NEST environment"
+        run: |
+          echo "/opt/nest/bin" >> $GITHUB_PATH
+          echo "PYTHONPATH=/opt/nest/lib/python3.10/site-packages:$PYTHONPATH" >> $GITHUB_ENV
+
+      - name: "Install system dependencies"
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended dvipng cm-super
+
+      - name: "Install Python dependencies"
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy matplotlib
+
+      - name: "Verify NEST installation"
+        run: python -c "import nest; print(f'NEST {nest.__version__} installed successfully')"
+
+      - name: "Run example: ${{ matrix.name }}"
+        id: run-example
+        working-directory: pynest/examples
+        run: |
+          mkdir -p outputs
+
+          # Get the directory containing the example (for proper imports)
+          EXAMPLE_PATH="${{ matrix.path }}"
+          EXAMPLE_DIR=$(dirname "$EXAMPLE_PATH")
+          EXAMPLE_FILE=$(basename "$EXAMPLE_PATH")
+
+          echo "Running: $EXAMPLE_PATH"
+
+          # Run from the example's directory to handle local imports
+          if [ "$EXAMPLE_DIR" != "." ]; then
+            cd "$EXAMPLE_DIR"
+            python "$EXAMPLE_FILE" 2>&1 | tee "../outputs/${{ matrix.name }}.log" || echo "Example failed with exit code $?"
+            cd ..
+          else
+            python "$EXAMPLE_FILE" 2>&1 | tee "outputs/${{ matrix.name }}.log" || echo "Example failed with exit code $?"
+          fi
+
+          # Collect any generated figures
+          echo "Collecting outputs..."
+          find . -maxdepth 2 -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" \) -newer outputs/${{ matrix.name }}.log -exec cp {} outputs/ \; 2>/dev/null || true
+
+          ls -la outputs/
+
+      - name: "Upload example outputs"
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        if: always()
+        with:
+          name: example-${{ matrix.name }}
+          path: pynest/examples/outputs/
+          retention-days: 30
+          if-no-files-found: ignore
+
+  # ---------------------------------------------------------------------------
+  # Job 3: Collect all outputs and deploy to GitHub Pages
+  # ---------------------------------------------------------------------------
+  collect-and-deploy:
+    needs: run-example
+    if: always()
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
+        with:
+          egress-policy: audit
+          disable-telemetry: true
+
+      - name: "Download all example artifacts"
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+        with:
+          pattern: example-*
+          path: all-outputs
+          merge-multiple: false
+
+      - name: "Organize outputs for deployment"
+        run: |
+          mkdir -p deploy/examples
+
+          # Move each example's outputs to a subdirectory
+          for dir in all-outputs/example-*; do
+            if [ -d "$dir" ]; then
+              example_name=$(basename "$dir" | sed 's/^example-//')
+              mkdir -p "deploy/examples/$example_name"
+              cp -r "$dir"/* "deploy/examples/$example_name/" 2>/dev/null || true
+            fi
+          done
+
+          # Generate index page
+          cat > deploy/examples/index.html << 'HTMLEOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>NEST Example Outputs</title>
+            <style>
+              body { font-family: sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+              h1 { color: #333; }
+              .example-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+              .example-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
+              .example-card h3 { margin-top: 0; }
+              .example-card img { max-width: 100%; height: auto; }
+            </style>
+          </head>
+          <body>
+            <h1>NEST Example Outputs</h1>
+            <p>Generated: $(date -u +"%Y-%m-%d %H:%M UTC")</p>
+            <div class="example-grid">
+          HTMLEOF
+
+          # Add cards for each example with outputs
+          for dir in deploy/examples/*/; do
+            if [ -d "$dir" ]; then
+              example_name=$(basename "$dir")
+              echo "<div class='example-card'>" >> deploy/examples/index.html
+              echo "<h3>$example_name</h3>" >> deploy/examples/index.html
+
+              # List files
+              echo "<ul>" >> deploy/examples/index.html
+              for file in "$dir"*; do
+                if [ -f "$file" ]; then
+                  filename=$(basename "$file")
+                  echo "<li><a href='$example_name/$filename'>$filename</a></li>" >> deploy/examples/index.html
+                fi
+              done
+              echo "</ul>" >> deploy/examples/index.html
+              echo "</div>" >> deploy/examples/index.html
+            fi
+          done
+
+          cat >> deploy/examples/index.html << 'HTMLEOF'
+            </div>
+          </body>
+          </html>
+          HTMLEOF
+
+          echo "Deployment structure:"
+          find deploy -type f | head -50
+
+      - name: "Deploy to GitHub Pages"
+        if: github.event_name == 'workflow_dispatch'
+        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: deploy
+          destination_dir: .
+          keep_files: true
