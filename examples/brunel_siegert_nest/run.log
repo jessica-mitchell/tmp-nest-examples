@@ -1,0 +1,39 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+Jan 16 10:36:54 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.1 ms.
+
+Jan 16 10:36:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 4 nodes for simulation. 3 of them use iterative solution 
+    techniques.
+
+Jan 16 10:36:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 4
+    Simulation time (ms): 50
+    Number of OpenMP threads: 1
+    Not using MPI
+
+[   0% ] Model time: 0.0 ms, Real-time factor: 0.0000[   2% ] Model time: 1.0 ms, Real-time factor: 9.8180[   4% ] Model time: 2.0 ms, Real-time factor: 5.1285[   6% ] Model time: 3.0 ms, Real-time factor: 3.5703[   8% ] Model time: 4.0 ms, Real-time factor: 2.7760[  10% ] Model time: 5.0 ms, Real-time factor: 2.2810[  12% ] Model time: 6.0 ms, Real-time factor: 1.9483[  14% ] Model time: 7.0 ms, Real-time factor: 1.6944[  16% ] Model time: 8.0 ms, Real-time factor: 1.5040[  18% ] Model time: 9.0 ms, Real-time factor: 1.3543[  20% ] Model time: 10.0 ms, Real-time factor: 1.2359[  22% ] Model time: 11.0 ms, Real-time factor: 1.1394[  24% ] Model time: 12.0 ms, Real-time factor: 1.0602[  26% ] Model time: 13.0 ms, Real-time factor: 0.9918[  28% ] Model time: 14.0 ms, Real-time factor: 0.9333[  30% ] Model time: 15.0 ms, Real-time factor: 0.8825[  32% ] Model time: 16.0 ms, Real-time factor: 0.8379[  34% ] Model time: 17.0 ms, Real-time factor: 0.7995[  36% ] Model time: 18.0 ms, Real-time factor: 0.7642[  38% ] Model time: 19.0 ms, Real-time factor: 0.7329[  40% ] Model time: 20.0 ms, Real-time factor: 0.7048[  43% ] Model time: 21.0 ms, Real-time factor: 0.6794[  44% ] Model time: 22.0 ms, Real-time factor: 0.6562[  46% ] Model time: 23.0 ms, Real-time factor: 0.6350[  48% ] Model time: 24.0 ms, Real-time factor: 0.6157[  50% ] Model time: 25.0 ms, Real-time factor: 0.5979[  52% ] Model time: 26.0 ms, Real-time factor: 0.5803[  54% ] Model time: 27.0 ms, Real-time factor: 0.5653[  56% ] Model time: 28.0 ms, Real-time factor: 0.5510[  58% ] Model time: 29.0 ms, Real-time factor: 0.5379[  60% ] Model time: 30.0 ms, Real-time factor: 0.5257[  62% ] Model time: 31.0 ms, Real-time factor: 0.5142[  64% ] Model time: 32.0 ms, Real-time factor: 0.5035[  66% ] Model time: 33.0 ms, Real-time factor: 0.4934[  68% ] Model time: 34.0 ms, Real-time factor: 0.4842[  70% ] Model time: 35.0 ms, Real-time factor: 0.4754[  72% ] Model time: 36.0 ms, Real-time factor: 0.4670[  74% ] Model time: 37.0 ms, Real-time factor: 0.4589[  76% ] Model time: 38.0 ms, Real-time factor: 0.4515[  78% ] Model time: 39.0 ms, Real-time factor: 0.4447[  80% ] Model time: 40.0 ms, Real-time factor: 0.4378[  82% ] Model time: 41.0 ms, Real-time factor: 0.4313[  84% ] Model time: 42.0 ms, Real-time factor: 0.4250[  86% ] Model time: 43.0 ms, Real-time factor: 0.4192[  88% ] Model time: 44.0 ms, Real-time factor: 0.4133[  90% ] Model time: 45.0 ms, Real-time factor: 0.4074[  92% ] Model time: 46.0 ms, Real-time factor: 0.4017[  94% ] Model time: 47.0 ms, Real-time factor: 0.3967[  96% ] Model time: 48.0 ms, Real-time factor: 0.3924[  98% ] Model time: 49.0 ms, Real-time factor: 0.3879[ 100% ] Model time: 50.0 ms, Real-time factor: 0.3839
+
+Jan 16 10:36:54 SimulationManager::run [Info]: 
+    Simulation finished.
+Building network
+Excitatory rate   : 32.03 spks/s
+Inhibitory rate   : 32.03 spks/s
+
+Generated 1 output files:
+  - run.log

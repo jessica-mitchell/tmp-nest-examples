@@ -1,0 +1,41 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+Traceback (most recent call last):
+  File "/home/runner/work/tmp-nest-examples/tmp-nest-examples/pynest/examples/run_example.py", line 102, in <module>
+    run_example(example_path, output_dir)
+  File "/home/runner/work/tmp-nest-examples/tmp-nest-examples/pynest/examples/run_example.py", line 76, in run_example
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/work/tmp-nest-examples/tmp-nest-examples/pynest/examples/spatial/conncomp.py", line 108, in <module>
+    plt.show()
+  File "/home/runner/work/tmp-nest-examples/tmp-nest-examples/pynest/examples/run_example.py", line 35, in _patched_show
+    fig.savefig(filepath, dpi=150, bbox_inches='tight')
+  File "/opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/matplotlib/figure.py", line 3490, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/matplotlib/backend_bases.py", line 2186, in print_figure
+    result = print_method(
+  File "/opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/matplotlib/backend_bases.py", line 2042, in <lambda>
+    print_method = functools.wraps(meth)(lambda *args, **kwargs: meth(
+  File "/opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py", line 481, in print_png
+    self._print_pil(filename_or_obj, "png", pil_kwargs, metadata)
+  File "/opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py", line 430, in _print_pil
+    mpl.image.imsave(
+  File "/opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/matplotlib/image.py", line 1657, in imsave
+    image.save(fname, **pil_kwargs)
+  File "/opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/PIL/Image.py", line 2585, in save
+    fp = builtins.open(filename, "w+b")
+FileNotFoundError: [Errno 2] No such file or directory: 'outputs/spatial_conncomp/conncomp_fig01.png'

@@ -1,0 +1,27 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+Traceback (most recent call last):
+  File "/home/runner/work/tmp-nest-examples/tmp-nest-examples/pynest/examples/run_example.py", line 102, in <module>
+    run_example(example_path, output_dir)
+  File "/home/runner/work/tmp-nest-examples/tmp-nest-examples/pynest/examples/run_example.py", line 76, in run_example
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/runner/work/tmp-nest-examples/tmp-nest-examples/pynest/examples/sonata_example/sonata_network.py", line 75, in <module>
+    sonata_net = nest.SonataNetwork(net_config, sim_config=sim_config)
+  File "/opt/nest/lib/python3.10/site-packages/nest/lib/hl_api_sonata.py", line 111, in __init__
+    raise kernel.NESTError(msg)
+nest.lib.hl_api_exceptions.NESTErrors.NESTError: SonataNetwork unavailable because NEST was compiled without HDF5 support

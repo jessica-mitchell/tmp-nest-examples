@@ -1,0 +1,91 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+================================================================================
+Artificial Synchrony Example
+================================================================================
+gamma: 0.5
+delay: 0.25 ms
+tau_r: 0.25 ms
+ISI: 20.3688 ms
+Firing rate: 49.09 Hz
+================================================================================
+
+
+========================================
+Running precise simulations:
+========================================
+  Weight: 0.0 pA -> Synchrony: 0.2478
+  Weight: 0.2 pA -> Synchrony: 0.7577
+  Weight: 0.4 pA -> Synchrony: 0.7601
+  Weight: 0.6 pA -> Synchrony: 0.7638
+  Weight: 0.8 pA -> Synchrony: 0.7541
+  Weight: 1.0 pA -> Synchrony: 0.7418
+  Weight: 1.2 pA -> Synchrony: 0.7327
+  Weight: 1.4 pA -> Synchrony: 0.7025
+  Weight: 1.6 pA -> Synchrony: 0.6462
+  Weight: 1.8 pA -> Synchrony: 0.5729
+  Weight: 2.0 pA -> Synchrony: 0.5311
+  Weight: 2.2 pA -> Synchrony: 0.4789
+  Weight: 2.4 pA -> Synchrony: 0.4117
+  Weight: 2.6 pA -> Synchrony: 0.3214
+  Weight: 2.8 pA -> Synchrony: 0.1842
+  Weight: 3.0 pA -> Synchrony: 0.0010
+  Weight: 3.2 pA -> Synchrony: 0.0005
+  Weight: 3.4 pA -> Synchrony: 0.0006
+  Weight: 3.6 pA -> Synchrony: 0.0008
+  Weight: 3.8 pA -> Synchrony: 0.0009
+  Weight: 4.0 pA -> Synchrony: 0.0010
+  Weight: 4.2 pA -> Synchrony: 0.0014
+  Weight: 4.4 pA -> Synchrony: 0.0016
+  Weight: 4.6 pA -> Synchrony: 0.0021
+  Weight: 4.8 pA -> Synchrony: 0.0026
+  Weight: 5.0 pA -> Synchrony: 0.0032
+
+========================================
+Running grid-constrained simulations:
+========================================
+  Weight: 0.0 pA -> Synchrony: 0.2483
+  Weight: 0.2 pA -> Synchrony: 0.7550
+  Weight: 0.4 pA -> Synchrony: 0.8214
+  Weight: 0.6 pA -> Synchrony: 0.8572
+  Weight: 0.8 pA -> Synchrony: 0.8744
+  Weight: 1.0 pA -> Synchrony: 0.8676
+  Weight: 1.2 pA -> Synchrony: 0.8115
+  Weight: 1.4 pA -> Synchrony: 0.7882
+  Weight: 1.6 pA -> Synchrony: 0.8103
+  Weight: 1.8 pA -> Synchrony: 0.7279
+  Weight: 2.0 pA -> Synchrony: 0.5659
+  Weight: 2.2 pA -> Synchrony: 0.4811
+  Weight: 2.4 pA -> Synchrony: 0.3995
+  Weight: 2.6 pA -> Synchrony: 0.3029
+  Weight: 2.8 pA -> Synchrony: 0.1608
+  Weight: 3.0 pA -> Synchrony: 0.0033
+  Weight: 3.2 pA -> Synchrony: 0.0016
+  Weight: 3.4 pA -> Synchrony: 0.0013
+  Weight: 3.6 pA -> Synchrony: 0.0012
+  Weight: 3.8 pA -> Synchrony: 0.0015
+  Weight: 4.0 pA -> Synchrony: 0.0017
+  Weight: 4.2 pA -> Synchrony: 0.0024
+  Weight: 4.4 pA -> Synchrony: 0.0023
+  Weight: 4.6 pA -> Synchrony: 0.0021
+  Weight: 4.8 pA -> Synchrony: 0.0031
+  Weight: 5.0 pA -> Synchrony: 0.0021
+Saved: artificial_synchrony_fig01.png
+
+Generated 2 output files:
+  - artificial_synchrony_fig01.png
+  - run.log

@@ -1,0 +1,21 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+mean membrane potential (actual / calculated): -57.79420883300154 / -57.81894163122827
+variance (actual / calculated): 0.6809326908771233 / 0.6897398528707916
+firing rate (actual / calculated): 0.185 / 0.2898135046747145
+
+Generated 1 output files:
+  - run.log

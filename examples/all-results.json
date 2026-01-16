@@ -1,0 +1,572 @@
+[
+  {
+    "name": "aeif_cond_beta_multisynapse",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "artificial_synchrony",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "balancedneuron",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "brette_gerstner_fig_2c",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "brette_gerstner_fig_3d",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "BrodyHopfield",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "brunel_alpha_evolution_strategies",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "brunel_alpha_nest",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "brunel_delta_nest",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "brunel_exp_multisynapse_nest",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "brunel_siegert_nest",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "CampbellSiegert",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "clopath_synapse_small_network",
+    "status": "failed",
+    "exit_code": 134,
+    "outputs": 0
+  },
+  {
+    "name": "clopath_synapse_spike_pairing",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "correlospinmatrix_detector_two_neuron",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "cross_check_mip_corrdet",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "csa_example",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "csa_spatial_example",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "evaluate_quantal_stp_synapse",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "evaluate_tsodyks2_synapse",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 2
+  },
+  {
+    "name": "gap_junctions_inhibitory_network",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "gap_junctions_two_neurons",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "gif_cond_exp_multisynapse",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "gif_pop_psc_exp",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 3
+  },
+  {
+    "name": "gif_population",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "glif_cond_neuron",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 5
+  },
+  {
+    "name": "glif_psc_double_alpha_neuron",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 2
+  },
+  {
+    "name": "glif_psc_neuron",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 5
+  },
+  {
+    "name": "hh_phaseplane",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "hh_psc_alpha",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "hpc_benchmark",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "iaf_tum_2000_short_term_depression",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "iaf_tum_2000_short_term_facilitation",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "if_curve",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "intrinsic_currents_spiking",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "intrinsic_currents_subthreshold",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "lin_rate_ipn_network",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "mc_neuron",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "multimeter_file",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "one_neuron",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "one_neuron_with_noise",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "plot_weight_matrices",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "precise_spiking",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "pulsepacket",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "rate_neuron_dm",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "recording_demo",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "repeated_stimulation",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "sensitivity_to_perturbation",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "sinusoidal_gamma_generator",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 2
+  },
+  {
+    "name": "sinusoidal_poisson_generator",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "store_restore_network",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "structural_plasticity",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "synapsecollection",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 3
+  },
+  {
+    "name": "testiaf",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "twoneurons",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "urbanczik_synapse_example",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 2
+  },
+  {
+    "name": "vinit_example",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "wang_decision_making",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 1
+  },
+  {
+    "name": "astrocyte_brunel_bernoulli",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "astrocyte_brunel_fixed_indegree",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "astrocyte_interaction",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "astrocyte_single",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "astrocyte_small_network",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "brette_et_al_2007_benchmark",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "coba",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "cuba",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "cuba_ps",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "cuba_stdp",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "hh_coba",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "receptors_and_current",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "two_comps",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "eprop_supervised_classification_evidence_accumulation",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "eprop_supervised_classification_neuromorphic_mnist",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "eprop_supervised_regression_handwriting",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "eprop_supervised_regression_lemniscate",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "eprop_supervised_regression_sine_waves",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "eprop_supervised_regression_sine_waves_bsshslm",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_conncomp",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_conncon_sources",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_conncon_targets",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_connex",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_connex_ew",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_ctx_2n",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_gaussex",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_grid_iaf",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_grid_iaf_irr",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_grid_iaf_oc",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_nodes_source_target",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_test_3d",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_test_3d_exp",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "spatial_test_3d_gauss",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "EI_clustered_network",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "pong",
+    "status": "success",
+    "exit_code": 0,
+    "outputs": 0
+  },
+  {
+    "name": "sonata_network",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  },
+  {
+    "name": "sudoku",
+    "status": "failed",
+    "exit_code": 1,
+    "outputs": 0
+  }
+]

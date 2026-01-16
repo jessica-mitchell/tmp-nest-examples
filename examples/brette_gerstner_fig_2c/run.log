@@ -1,0 +1,35 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+Jan 16 10:39:46 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.1 ms.
+
+Jan 16 10:39:46 NodeManager::prepare_nodes [Info]: 
+    Preparing 4 nodes for simulation.
+
+Jan 16 10:39:46 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 4
+    Simulation time (ms): 1000
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:46 SimulationManager::run [Info]: 
+    Simulation finished.
+Saved: brette_gerstner_fig_2c_fig01.png
+
+Generated 2 output files:
+  - brette_gerstner_fig_2c_fig01.png
+  - run.log

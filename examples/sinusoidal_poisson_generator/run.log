@@ -1,0 +1,60 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+Jan 16 10:37:29 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.01 ms.
+
+Jan 16 10:37:29 NodeManager::prepare_nodes [Info]: 
+    Preparing 6 nodes for simulation.
+
+Jan 16 10:37:29 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 6
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:37:29 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:37:29 NodeManager::prepare_nodes [Info]: 
+    Preparing 28 nodes for simulation.
+
+Jan 16 10:37:29 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 28
+    Simulation time (ms): 200
+    Number of OpenMP threads: 4
+    Not using MPI
+
+Jan 16 10:37:29 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:37:29 NodeManager::prepare_nodes [Info]: 
+    Preparing 25 nodes for simulation.
+
+Jan 16 10:37:29 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 25
+    Simulation time (ms): 200
+    Number of OpenMP threads: 4
+    Not using MPI
+
+Jan 16 10:37:29 SimulationManager::run [Info]: 
+    Simulation finished.
+{'element_type': ('recorder', 'recorder'), 'events': ({'senders': array([], dtype=int64), 'times': array([], dtype=float64)}, {'senders': array([], dtype=int64), 'times': array([], dtype=float64)}), 'frozen': (False, False), 'global_id': (3, 4), 'interval': (0.1, 0.1), 'label': ('', ''), 'local': (True, True), 'model': ('multimeter', 'multimeter'), 'model_id': (99, 99), 'n_events': (0, 0), 'node_uses_wfr': (False, False), 'offset': (0.0, 0.0), 'origin': (0.0, 0.0), 'record_from': (('rate',), ('rate',)), 'record_to': ('memory', 'memory'), 'start': (0.0, 0.0), 'stop': (1.7976931348623157e+308, 1.7976931348623157e+308), 'thread': (0, 0), 'thread_local_id': (2, 3), 'time_in_steps': (False, False), 'vp': (0, 0)}
+Saved: sinusoidal_poisson_generator_fig01.png
+
+Generated 2 output files:
+  - run.log
+  - sinusoidal_poisson_generator_fig01.png

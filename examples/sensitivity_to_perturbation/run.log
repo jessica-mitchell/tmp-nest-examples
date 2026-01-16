@@ -1,0 +1,74 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+Jan 16 10:37:10 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.01 ms.
+
+Jan 16 10:37:10 NodeManager::prepare_nodes [Info]: 
+    Preparing 1254 nodes for simulation.
+
+Jan 16 10:37:10 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 1254
+    Simulation time (ms): 1000
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:37:17 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:37:17 NodeManager::prepare_nodes [Info]: 
+    Preparing 1254 nodes for simulation.
+
+Jan 16 10:37:17 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 1254
+    Simulation time (ms): 0.2
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:37:17 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:37:17 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.01 ms.
+
+Jan 16 10:37:17 NodeManager::prepare_nodes [Info]: 
+    Preparing 1254 nodes for simulation.
+
+Jan 16 10:37:17 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 1254
+    Simulation time (ms): 1000
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:37:23 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:37:23 NodeManager::prepare_nodes [Info]: 
+    Preparing 1254 nodes for simulation.
+
+Jan 16 10:37:23 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 1254
+    Simulation time (ms): 0.2
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:37:23 SimulationManager::run [Info]: 
+    Simulation finished.
+Saved: sensitivity_to_perturbation_fig01.png
+
+Generated 2 output files:
+  - run.log
+  - sensitivity_to_perturbation_fig01.png

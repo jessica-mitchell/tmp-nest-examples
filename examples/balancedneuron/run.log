@@ -1,0 +1,45 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+Inhibitory rate estimate: 15.00 spks/s
+  -> Neuron rate: 347.56 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 25.00 spks/s
+  -> Neuron rate:   0.04 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 20.00 spks/s
+  -> Neuron rate:  34.88 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 22.50 spks/s
+  -> Neuron rate:   0.00 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 21.25 spks/s
+  -> Neuron rate:   0.84 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 20.62 spks/s
+  -> Neuron rate:   7.40 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 20.94 spks/s
+  -> Neuron rate:   3.08 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 20.78 spks/s
+  -> Neuron rate:   4.40 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 20.70 spks/s
+  -> Neuron rate:   6.32 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 20.74 spks/s
+  -> Neuron rate:   4.88 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 20.72 spks/s
+  -> Neuron rate:   5.96 spks/s (goal: 5.00 spks/s)
+Inhibitory rate estimate: 20.73 spks/s
+  -> Neuron rate:   5.52 spks/s (goal: 5.00 spks/s)
+Optimal rate for the inhibitory population: 20.73 spks/s
+Saved: balancedneuron_fig01.png
+
+Generated 2 output files:
+  - balancedneuron_fig01.png
+  - run.log

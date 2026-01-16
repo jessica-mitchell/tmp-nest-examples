@@ -1,0 +1,120 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+Simulating with current I=0 pA
+Simulating with current I=20 pA
+Simulating with current I=40 pA
+Simulating with current I=60 pA
+Simulating with current I=80 pA
+Simulating with current I=100 pA
+Simulating with current I=120 pA
+Simulating with current I=140 pA
+Simulating with current I=160 pA
+Simulating with current I=180 pA
+Simulating with current I=200 pA
+Simulating with current I=220 pA
+Simulating with current I=240 pA
+Simulating with current I=260 pA
+Simulating with current I=280 pA
+Simulating with current I=300 pA
+Simulating with current I=320 pA
+Simulating with current I=340 pA
+Simulating with current I=360 pA
+Simulating with current I=380 pA
+Simulating with current I=400 pA
+Simulating with current I=420 pA
+Simulating with current I=440 pA
+Simulating with current I=460 pA
+Simulating with current I=480 pA
+Simulating with current I=500 pA
+Simulating with current I=520 pA
+Simulating with current I=540 pA
+Simulating with current I=560 pA
+Simulating with current I=580 pA
+Simulating with current I=600 pA
+Simulating with current I=620 pA
+Simulating with current I=640 pA
+Simulating with current I=660 pA
+Simulating with current I=680 pA
+Simulating with current I=700 pA
+Simulating with current I=720 pA
+Simulating with current I=740 pA
+Simulating with current I=760 pA
+Simulating with current I=780 pA
+Simulating with current I=800 pA
+Simulating with current I=820 pA
+Simulating with current I=840 pA
+Simulating with current I=860 pA
+Simulating with current I=880 pA
+Simulating with current I=900 pA
+Simulating with current I=920 pA
+Simulating with current I=940 pA
+Simulating with current I=960 pA
+Simulating with current I=980 pA
+Simulating with current I=1000 pA
+Simulating with current I=1020 pA
+Simulating with current I=1040 pA
+Simulating with current I=1060 pA
+Simulating with current I=1080 pA
+Simulating with current I=1100 pA
+Simulating with current I=1120 pA
+Simulating with current I=1140 pA
+Simulating with current I=1160 pA
+Simulating with current I=1180 pA
+Simulating with current I=1200 pA
+Simulating with current I=1220 pA
+Simulating with current I=1240 pA
+Simulating with current I=1260 pA
+Simulating with current I=1280 pA
+Simulating with current I=1300 pA
+Simulating with current I=1320 pA
+Simulating with current I=1340 pA
+Simulating with current I=1360 pA
+Simulating with current I=1380 pA
+Simulating with current I=1400 pA
+Simulating with current I=1420 pA
+Simulating with current I=1440 pA
+Simulating with current I=1460 pA
+Simulating with current I=1480 pA
+Simulating with current I=1500 pA
+Simulating with current I=1520 pA
+Simulating with current I=1540 pA
+Simulating with current I=1560 pA
+Simulating with current I=1580 pA
+Simulating with current I=1600 pA
+Simulating with current I=1620 pA
+Simulating with current I=1640 pA
+Simulating with current I=1660 pA
+Simulating with current I=1680 pA
+Simulating with current I=1700 pA
+Simulating with current I=1720 pA
+Simulating with current I=1740 pA
+Simulating with current I=1760 pA
+Simulating with current I=1780 pA
+Simulating with current I=1800 pA
+Simulating with current I=1820 pA
+Simulating with current I=1840 pA
+Simulating with current I=1860 pA
+Simulating with current I=1880 pA
+Simulating with current I=1900 pA
+Simulating with current I=1920 pA
+Simulating with current I=1940 pA
+Simulating with current I=1960 pA
+Simulating with current I=1980 pA
+Saved: hh_psc_alpha_fig01.png
+
+Generated 2 output files:
+  - hh_psc_alpha_fig01.png
+  - run.log

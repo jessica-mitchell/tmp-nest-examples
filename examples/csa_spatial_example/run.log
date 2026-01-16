@@ -1,0 +1,19 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+This example requires CSA to be installed in order to run.
+Please make sure you compiled NEST using
+  -Dwith-libneurosim=[OFF|ON|</path/to/libneurosim>]
+and CSA and libneurosim are available.

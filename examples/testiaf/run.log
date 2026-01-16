@@ -1,0 +1,83 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+Jan 16 10:38:47 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.1 ms.
+
+Jan 16 10:38:47 NodeManager::prepare_nodes [Info]: 
+    Preparing 3 nodes for simulation.
+
+Jan 16 10:38:47 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 3
+    Simulation time (ms): 1000
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:47 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:47 correlospinmatrix_detector [Info]: 
+    Default for delta_tau changed from 0.1 to 0.5 ms
+
+Jan 16 10:38:47 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.5 ms.
+
+Jan 16 10:38:47 NodeManager::prepare_nodes [Info]: 
+    Preparing 3 nodes for simulation.
+
+Jan 16 10:38:47 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 3
+    Simulation time (ms): 1000
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:47 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:47 correlation_detector [Info]: 
+    Default for delta_tau changed from 0.5 to 5 ms
+
+Jan 16 10:38:47 correlomatrix_detector [Info]: 
+    Default for delta_tau changed from 0.5 to 5 ms
+
+Jan 16 10:38:47 correlospinmatrix_detector [Info]: 
+    Default for delta_tau changed from 0.1 to 1 ms
+
+Jan 16 10:38:47 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 1 ms.
+
+Jan 16 10:38:47 NodeManager::prepare_nodes [Info]: 
+    Preparing 3 nodes for simulation.
+
+Jan 16 10:38:47 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 3
+    Simulation time (ms): 1000
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:47 SimulationManager::run [Info]: 
+    Simulation finished.
+Running simulation with dt=0.10
+  Number of spikes: 16
+Running simulation with dt=0.50
+  Number of spikes: 16
+Running simulation with dt=1.00
+  Number of spikes: 16
+Saved: testiaf_fig01.png
+
+Generated 2 output files:
+  - run.log
+  - testiaf_fig01.png

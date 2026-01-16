@@ -1,0 +1,28 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+I  =  400.0
+I  =  450.0
+I  =  500.0
+I  =  550.0
+I  =  600.0
+I  =  650.0
+I  =  700.0
+I  =  750.0
+I  =  800.0
+I  =  850.0
+
+Generated 1 output files:
+  - run.log

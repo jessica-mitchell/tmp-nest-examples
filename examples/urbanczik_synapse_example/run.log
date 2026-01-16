@@ -1,0 +1,1289 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+
+Jan 16 10:38:49 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.1 ms.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 600 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 600
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 SimulationManager::set_status [Info]: 
+    Temporal resolution changed from 0.1 to 0.1 ms.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:49 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:49 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:49 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:50 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:50 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:50 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:51 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:51 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:51 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:52 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:52 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:52 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:53 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:53 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:53 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:54 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:54 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:54 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:54 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:54 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:54 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:54 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:54 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:54 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:54 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:55 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:55 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:55 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:55 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:55 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:55 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:55 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:55 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:55 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:55 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:55 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:55 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:55 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:55 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:55 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:55 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:55 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:55 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:55 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:55 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:55 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:55 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:55 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:56 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:56 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:56 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:56 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:56 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:56 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:56 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:56 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:56 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:56 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:56 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:56 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:56 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:56 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:56 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:56 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:56 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:56 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:56 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:56 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:56 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:56 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:57 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:57 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:57 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:57 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:57 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:57 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:57 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:57 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:57 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:57 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:57 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:57 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:57 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:57 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:57 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:57 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:57 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:57 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:57 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:57 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:57 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:58 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:58 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:58 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:58 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:58 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:58 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:58 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:58 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:58 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:58 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:58 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:58 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:58 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:58 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:58 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:58 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:58 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:58 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:58 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:58 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:58 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:59 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:59 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:59 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:59 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:59 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:59 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:59 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:59 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:59 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:59 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:59 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:59 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:59 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:59 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:59 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:59 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:59 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:38:59 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:38:59 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:38:59 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:00 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:00 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:00 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:00 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:00 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:00 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:00 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:00 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:00 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:00 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:00 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:00 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:00 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:00 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:00 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:00 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:00 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:00 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:01 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:01 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:01 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:01 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:01 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:01 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:01 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:01 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:01 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:01 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:01 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:01 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:01 SimulationManager::run [Info]: 
+    Simulation finished.
+
+Jan 16 10:39:01 NodeManager::prepare_nodes [Info]: 
+    Preparing 406 nodes for simulation.
+
+Jan 16 10:39:01 SimulationManager::start_updating_ [Info]: 
+    Number of local nodes: 406
+    Simulation time (ms): 200
+    Number of OpenMP threads: 1
+    Not using MPI
+
+Jan 16 10:39:01 SimulationManager::run [Info]: 
+    Simulation finished.
+/home/runner/work/tmp-nest-examples/tmp-nest-examples/pynest/examples/urbanczik_synapse_example.py:71: RuntimeWarning:invalid value encountered in divide
+Saved: urbanczik_synapse_example_fig01.png
+Saved: urbanczik_synapse_example_fig02.png
+
+Generated 3 output files:
+  - run.log
+  - urbanczik_synapse_example_fig01.png
+  - urbanczik_synapse_example_fig02.png

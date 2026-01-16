@@ -1,0 +1,24 @@
+
+              -- N E S T --
+  Copyright (C) 2004 The NEST Initiative
+
+ Version: 3.9.0-post0.dev0
+ Built: Jan 15 2026 10:38:56
+
+ This program is provided AS IS and comes with
+ NO WARRANTY. See the file LICENSE for details.
+
+ Problems or suggestions?
+   Visit https://www.nest-simulator.org
+
+ Type 'nest.help()' to find out more about NEST.
+
+Saved: synapsecollection_fig01.png
+Saved: synapsecollection_fig02.png
+Saved: synapsecollection_fig03.png
+
+Generated 4 output files:
+  - run.log
+  - synapsecollection_fig01.png
+  - synapsecollection_fig02.png
+  - synapsecollection_fig03.png
