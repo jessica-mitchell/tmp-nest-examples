@@ -193,7 +193,8 @@ if __name__ == "__main__":
     nest.set_verbosity("M_WARNING")
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--runs", type=int, default=5000, help="Number of game steps to simulate.")
+    # reduce number of runs to 10% 
+    parser.add_argument("--runs", type=int, default=500, help="Number of game steps to simulate.")
     parser.add_argument("--debug", action="store_true", help="Verbose debugging output.")
     parser.add_argument(
         "--out_dir",

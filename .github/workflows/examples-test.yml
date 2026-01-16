@@ -1,7 +1,7 @@
 #
 # Workflow for running NEST Python examples using artifacts from nest-simulator repo
 #
-# Reads examples.yml config and runs examples in parallel using matrix strategy.
+# Reads examples.yml config and runs examples in batches using matrix strategy.
 # Collects generated figures and deploys to GitHub Pages.
 #
 # Prerequisites:
@@ -21,18 +21,26 @@ on:
         description: 'Run only examples matching this pattern (e.g., "brunel" or "spatial_"). Leave empty for all.'
         required: false
         type: string
+      batch_size:
+        description: 'Number of examples per batch (default: 10)'
+        required: false
+        type: number
+        default: 10
   schedule:
     - cron: '0 3 * * *'
 
+env:
+  BATCH_SIZE: ${{ github.event.inputs.batch_size || 10 }}
+
 jobs:
   # ---------------------------------------------------------------------------
-  # Job 1: Read config and generate matrix
+  # Job 1: Read config and generate batched matrix
   # ---------------------------------------------------------------------------
   prepare:
     runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
-      run_id: ${{ steps.get-run-id.outputs.run_id }}
+      run_id: ${{ steps.set-run-id.outputs.run_id }}
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
@@ -75,41 +83,97 @@ jobs:
             echo "run_id=${{ steps.get-run-id.outputs.run_id }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: "Generate example matrix from config"
+      - name: "Generate batched matrix from config"
         id: generate-matrix
         run: |
           # Install yq for YAML parsing
           sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.35.1/yq_linux_amd64
           sudo chmod +x /usr/local/bin/yq
 
-          # Extract examples with type=python from config
-          # Output format: {"include": [{"name": "...", "path": "..."}, ...]}
-          # Use -I=0 to output compact single-line JSON
           FILTER="${{ github.event.inputs.example_filter }}"
+          BATCH_SIZE="${{ env.BATCH_SIZE }}"
 
+          # Extract examples with type=python from config
           if [ -n "$FILTER" ]; then
-            # Filter examples by name pattern
-            MATRIX=$(yq -o=json -I=0 '.examples | map(select(.type == "python" and .name | test("'"$FILTER"'"))) | {"include": .}' pynest/examples/examples.yml)
+            EXAMPLES=$(yq -o=json -I=0 '.examples | map(select(.type == "python" and .name | test("'"$FILTER"'")))' pynest/examples/examples.yml)
           else
-            # All python examples
-            MATRIX=$(yq -o=json -I=0 '.examples | map(select(.type == "python")) | {"include": .}' pynest/examples/examples.yml)
+            EXAMPLES=$(yq -o=json -I=0 '.examples | map(select(.type == "python"))' pynest/examples/examples.yml)
           fi
+
+          # Count examples
+          COUNT=$(echo "$EXAMPLES" | yq 'length')
+          echo "Found $COUNT examples to run"
+
+          # Calculate number of batches
+          NUM_BATCHES=$(( (COUNT + BATCH_SIZE - 1) / BATCH_SIZE ))
+          echo "Creating $NUM_BATCHES batches of up to $BATCH_SIZE examples each"
+
+          # Create batched matrix using Python for easier JSON handling
+          python3 << EOF
+          import json
+          import math
+
+          examples = json.loads('''$EXAMPLES''')
+          batch_size = int("$BATCH_SIZE")
+          num_batches = math.ceil(len(examples) / batch_size)
+
+          batches = []
+          for i in range(num_batches):
+              start = i * batch_size
+              end = min(start + batch_size, len(examples))
+              batch_examples = examples[start:end]
+
+              # Create batch entry with just name/path pairs
+              batch_data = [{"name": ex["name"], "path": ex["path"]} for ex in batch_examples]
+
+              batches.append({
+                  "batch_id": i + 1,
+                  "batch_name": f"batch-{i+1:02d}",
+                  "examples": json.dumps(batch_data)
+              })
+
+          matrix = {"include": batches}
+          print(f"matrix={json.dumps(matrix)}")
+          EOF
+
+          # Capture Python output
+          MATRIX=$(python3 << EOF
+          import json
+          import math
+
+          examples = json.loads('''$EXAMPLES''')
+          batch_size = int("$BATCH_SIZE")
+          num_batches = math.ceil(len(examples) / batch_size)
+
+          batches = []
+          for i in range(num_batches):
+              start = i * batch_size
+              end = min(start + batch_size, len(examples))
+              batch_examples = examples[start:end]
+              batch_data = [{"name": ex["name"], "path": ex["path"]} for ex in batch_examples]
+
+              batches.append({
+                  "batch_id": i + 1,
+                  "batch_name": f"batch-{i+1:02d}",
+                  "examples": json.dumps(batch_data)
+              })
+
+          matrix = {"include": batches}
+          print(json.dumps(matrix))
+          EOF
+          )
 
           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
 
-          # Log count for visibility
-          COUNT=$(echo "$MATRIX" | yq '.include | length')
-          echo "Found $COUNT examples to run"
-
   # ---------------------------------------------------------------------------
-  # Job 2: Run examples in parallel
+  # Job 2: Run batches of examples in parallel
   # ---------------------------------------------------------------------------
-  run-example:
+  run-batch:
     needs: prepare
     runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
-      max-parallel: 10
+      max-parallel: 5
       matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
     steps:
       - name: Harden Runner
@@ -133,7 +197,7 @@ jobs:
           github-token: ${{ secrets.GH_PAT }}
           # TODO: Update repository for production
           repository: jessica-mitchell/nest-simulator
-          run-id: ${{ needs.prepare.outputs.run_id || github.event.inputs.nest_workflow_run_id }}
+          run-id: ${{ needs.prepare.outputs.run_id }}
 
       - name: "Extract NEST installation"
         run: |
@@ -153,44 +217,87 @@ jobs:
       - name: "Install Python dependencies"
         run: |
           python -m pip install --upgrade pip
-          pip install numpy scipy matplotlib
+          pip install numpy scipy matplotlib pandas h5py cycler imageio requests
 
       - name: "Verify NEST installation"
         run: python -c "import nest; print(f'NEST {nest.__version__} installed successfully')"
 
-      - name: "Run example: ${{ matrix.name }}"
-        id: run-example
+      - name: "Run batch: ${{ matrix.batch_name }}"
+        id: run-batch
         working-directory: pynest/examples
         run: |
           mkdir -p outputs
+          RESULTS_FILE="outputs/results.json"
+          echo '[]' > "$RESULTS_FILE"
 
-          # Get the directory containing the example (for proper imports)
-          EXAMPLE_PATH="${{ matrix.path }}"
-          EXAMPLE_DIR=$(dirname "$EXAMPLE_PATH")
-          EXAMPLE_FILE=$(basename "$EXAMPLE_PATH")
+          # Parse examples JSON
+          EXAMPLES='${{ matrix.examples }}'
 
-          echo "Running: $EXAMPLE_PATH"
+          # Run each example in the batch
+          echo "$EXAMPLES" | python3 -c "
+          import json
+          import sys
+          examples = json.load(sys.stdin)
+          for ex in examples:
+              print(f\"{ex['name']}|{ex['path']}\")
+          " | while IFS='|' read -r name path; do
+            echo ""
+            echo "========================================"
+            echo "Running: $name"
+            echo "Path: $path"
+            echo "========================================"
 
-          # Run from the example's directory to handle local imports
-          if [ "$EXAMPLE_DIR" != "." ]; then
-            cd "$EXAMPLE_DIR"
-            python "$EXAMPLE_FILE" 2>&1 | tee "../outputs/${{ matrix.name }}.log" || echo "Example failed with exit code $?"
-            cd ..
-          else
-            python "$EXAMPLE_FILE" 2>&1 | tee "outputs/${{ matrix.name }}.log" || echo "Example failed with exit code $?"
-          fi
+            mkdir -p "outputs/$name"
 
-          # Collect any generated figures
-          echo "Collecting outputs..."
-          find . -maxdepth 2 -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" \) -newer outputs/${{ matrix.name }}.log -exec cp {} outputs/ \; 2>/dev/null || true
+            # Run example with wrapper script
+            set +e
+            python run_example.py "$path" "outputs/$name" 2>&1 | tee "outputs/$name/run.log"
+            EXIT_CODE=${PIPESTATUS[0]}
+            set -e
 
-          ls -la outputs/
+            # Record result
+            if [ $EXIT_CODE -eq 0 ]; then
+              STATUS="success"
+              echo "Result: SUCCESS"
+            else
+              STATUS="failed"
+              echo "::warning::Example $name failed with exit code $EXIT_CODE"
+              echo "Result: FAILED (exit code $EXIT_CODE)"
+            fi
 
-      - name: "Upload example outputs"
+            # Count output files
+            OUTPUT_COUNT=$(find "outputs/$name" -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" \) 2>/dev/null | wc -l)
+            echo "Generated $OUTPUT_COUNT figure(s)"
+
+            # Append to results
+            python3 << PYEOF
+          import json
+          with open("$RESULTS_FILE", "r") as f:
+              results = json.load(f)
+          results.append({
+              "name": "$name",
+              "status": "$STATUS",
+              "exit_code": $EXIT_CODE,
+              "outputs": $OUTPUT_COUNT
+          })
+          with open("$RESULTS_FILE", "w") as f:
+              json.dump(results, f, indent=2)
+          PYEOF
+
+          done
+
+          # Summary
+          echo ""
+          echo "========================================"
+          echo "Batch Summary"
+          echo "========================================"
+          cat "$RESULTS_FILE"
+
+      - name: "Upload batch outputs"
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         if: always()
         with:
-          name: example-${{ matrix.name }}
+          name: ${{ matrix.batch_name }}
           path: pynest/examples/outputs/
           retention-days: 30
           if-no-files-found: ignore
@@ -199,7 +306,7 @@ jobs:
   # Job 3: Collect all outputs and deploy to GitHub Pages
   # ---------------------------------------------------------------------------
   collect-and-deploy:
-    needs: run-example
+    needs: run-batch
     if: always()
     runs-on: ubuntu-22.04
     steps:
@@ -209,10 +316,10 @@ jobs:
           egress-policy: audit
           disable-telemetry: true
 
-      - name: "Download all example artifacts"
+      - name: "Download all batch artifacts"
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
         with:
-          pattern: example-*
+          pattern: batch-*
           path: all-outputs
           merge-multiple: false
 
@@ -220,61 +327,149 @@ jobs:
         run: |
           mkdir -p deploy/examples
 
-          # Move each example's outputs to a subdirectory
-          for dir in all-outputs/example-*; do
-            if [ -d "$dir" ]; then
-              example_name=$(basename "$dir" | sed 's/^example-//')
-              mkdir -p "deploy/examples/$example_name"
-              cp -r "$dir"/* "deploy/examples/$example_name/" 2>/dev/null || true
+          # Collect results from all batches
+          echo '[]' > all-results.json
+
+          # Move each example's outputs and collect results
+          for batch_dir in all-outputs/batch-*/; do
+            if [ -d "$batch_dir" ]; then
+              echo "Processing $batch_dir"
+
+              # Merge results
+              if [ -f "${batch_dir}results.json" ]; then
+                python3 << PYEOF
+          import json
+          with open("all-results.json", "r") as f:
+              all_results = json.load(f)
+          with open("${batch_dir}results.json", "r") as f:
+              batch_results = json.load(f)
+          all_results.extend(batch_results)
+          with open("all-results.json", "w") as f:
+              json.dump(all_results, f, indent=2)
+          PYEOF
+              fi
+
+              # Copy example outputs
+              for example_dir in "${batch_dir}"*/; do
+                if [ -d "$example_dir" ] && [ "$(basename "$example_dir")" != "results.json" ]; then
+                  example_name=$(basename "$example_dir")
+                  mkdir -p "deploy/examples/$example_name"
+                  cp -r "$example_dir"* "deploy/examples/$example_name/" 2>/dev/null || true
+                fi
+              done
             fi
           done
 
+          # Generate summary
+          echo ""
+          echo "========================================"
+          echo "Overall Results"
+          echo "========================================"
+          python3 << 'PYEOF'
+          import json
+          with open("all-results.json", "r") as f:
+              results = json.load(f)
+
+          total = len(results)
+          success = sum(1 for r in results if r["status"] == "success")
+          failed = sum(1 for r in results if r["status"] == "failed")
+          outputs = sum(r["outputs"] for r in results)
+
+          print(f"Total examples: {total}")
+          print(f"Successful: {success}")
+          print(f"Failed: {failed}")
+          print(f"Total figures generated: {outputs}")
+
+          if failed > 0:
+              print("\nFailed examples:")
+              for r in results:
+                  if r["status"] == "failed":
+                      print(f"  - {r['name']} (exit code {r['exit_code']})")
+          PYEOF
+
+          # Copy results to deploy
+          cp all-results.json deploy/examples/
+
           # Generate index page
-          cat > deploy/examples/index.html << 'HTMLEOF'
-          <!DOCTYPE html>
+          python3 << 'PYEOF'
+          import json
+          import os
+          from datetime import datetime
+
+          with open("all-results.json", "r") as f:
+              results = json.load(f)
+
+          # Sort by name
+          results.sort(key=lambda x: x["name"])
+
+          total = len(results)
+          success = sum(1 for r in results if r["status"] == "success")
+          failed = total - success
+
+          html = f'''<!DOCTYPE html>
           <html>
           <head>
             <title>NEST Example Outputs</title>
             <style>
-              body { font-family: sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
-              h1 { color: #333; }
-              .example-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
-              .example-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
-              .example-card h3 { margin-top: 0; }
-              .example-card img { max-width: 100%; height: auto; }
+              body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 1400px; margin: 0 auto; padding: 20px; }}
+              h1 {{ color: #333; }}
+              .summary {{ background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 20px; }}
+              .summary .success {{ color: #22863a; }}
+              .summary .failed {{ color: #cb2431; }}
+              .example-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }}
+              .example-card {{ border: 1px solid #ddd; padding: 15px; border-radius: 8px; }}
+              .example-card.success {{ border-left: 4px solid #22863a; }}
+              .example-card.failed {{ border-left: 4px solid #cb2431; background: #ffeef0; }}
+              .example-card h3 {{ margin: 0 0 10px 0; font-size: 14px; }}
+              .example-card .status {{ font-size: 12px; color: #666; }}
+              .example-card ul {{ margin: 10px 0 0 0; padding-left: 20px; font-size: 13px; }}
+              .example-card img {{ max-width: 100%; height: auto; margin-top: 10px; }}
             </style>
           </head>
           <body>
             <h1>NEST Example Outputs</h1>
-            <p>Generated: $(date -u +"%Y-%m-%d %H:%M UTC")</p>
+            <div class="summary">
+              <strong>Generated:</strong> {datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")}<br>
+              <strong>Total:</strong> {total} examples |
+              <span class="success">Successful: {success}</span> |
+              <span class="failed">Failed: {failed}</span>
+            </div>
             <div class="example-grid">
-          HTMLEOF
+          '''
 
-          # Add cards for each example with outputs
-          for dir in deploy/examples/*/; do
-            if [ -d "$dir" ]; then
-              example_name=$(basename "$dir")
-              echo "<div class='example-card'>" >> deploy/examples/index.html
-              echo "<h3>$example_name</h3>" >> deploy/examples/index.html
+          for result in results:
+              name = result["name"]
+              status = result["status"]
+              outputs = result["outputs"]
 
-              # List files
-              echo "<ul>" >> deploy/examples/index.html
-              for file in "$dir"*; do
-                if [ -f "$file" ]; then
-                  filename=$(basename "$file")
-                  echo "<li><a href='$example_name/$filename'>$filename</a></li>" >> deploy/examples/index.html
-                fi
-              done
-              echo "</ul>" >> deploy/examples/index.html
-              echo "</div>" >> deploy/examples/index.html
-            fi
-          done
+              example_dir = f"deploy/examples/{name}"
+              files = []
+              if os.path.isdir(example_dir):
+                  files = [f for f in os.listdir(example_dir) if f.endswith(('.png', '.pdf', '.svg', '.log'))]
 
-          cat >> deploy/examples/index.html << 'HTMLEOF'
+              html += f'''
+              <div class="example-card {status}">
+                <h3>{name}</h3>
+                <div class="status">Status: {status.upper()} | Outputs: {outputs}</div>
+              '''
+
+              if files:
+                  html += '<ul>'
+                  for f in sorted(files):
+                      html += f'<li><a href="{name}/{f}">{f}</a></li>'
+                  html += '</ul>'
+
+              html += '</div>'
+
+          html += '''
             </div>
           </body>
           </html>
-          HTMLEOF
+          '''
+
+          with open("deploy/examples/index.html", "w") as f:
+              f.write(html)
+          PYEOF
 
           echo "Deployment structure:"
           find deploy -type f | head -50
