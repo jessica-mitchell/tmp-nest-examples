@@ -226,11 +226,6 @@ jobs:
       - name: "Verify NEST installation"
         run: python -c "import nest; print(f'NEST {nest.__version__} installed successfully')"
 
-      - name: "Save NEST version to file"
-        run: |
-          echo "${{ needs.prepare.outputs.nest_version }}" > nest_version.txt
-          echo "${{ needs.prepare.outputs.nest_version_normalized }}" > nest_version_normalized.txt
-
       - name: "Run batch: ${{ matrix.batch_name }}"
         id: run-batch
         working-directory: pynest/examples
@@ -331,10 +326,7 @@ jobs:
         if: always()
         with:
           name: ${{ matrix.batch_name }}
-          path: |
-            pynest/examples/outputs/
-            nest_version.txt
-            nest_version_normalized.txt
+          path: pynest/examples/outputs/
           retention-days: 7
           if-no-files-found: ignore
 
@@ -374,6 +366,10 @@ jobs:
 
           mkdir -p figures/examples
 
+          # Debug: show downloaded structure
+          echo "Downloaded artifact structure:"
+          find all-outputs -type f | head -50
+
           # Collect results from all batches
           echo '[]' > all-results.json
 
@@ -381,6 +377,8 @@ jobs:
           for batch_dir in all-outputs/batch-*/; do
             if [ -d "$batch_dir" ]; then
               echo "Processing $batch_dir"
+              echo "Contents of $batch_dir:"
+              ls -la "$batch_dir" | head -20
 
               # Merge results
               if [ -f "${batch_dir}results.json" ]; then
@@ -435,6 +433,11 @@ jobs:
                   if r["status"] == "failed":
                       print(f"  - {r['name']} (exit code {r['exit_code']})")
           PYEOF
+
+          # Show what will be in the tarball
+          echo "Figures directory structure:"
+          find figures -type f | head -50
+          echo "Total files: $(find figures -type f | wc -l)"
 
           # Create tarball
           tar -czf "nest-example-figures-${NEST_VERSION}.tar.gz" -C figures .
