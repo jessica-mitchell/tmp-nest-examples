@@ -105,11 +105,9 @@ jobs:
             echo "::warning::Could not extract NEST version, using 'unknown'"
           fi
 
-          # Normalize "3.9.0-post0.dev0" -> "v3.9"
-          NORMALIZED=$(echo "$VERSION" | sed -E 's/^([0-9]+)\.([0-9]+).*/v\1.\2/')
-          if [ "$NORMALIZED" = "$VERSION" ]; then
-            NORMALIZED="v0.0"  # Fallback if parsing fails
-          fi
+          # For now, use dev-latest since we're building from master
+          # TODO: When building from release branches, normalize "3.9.0" -> "v3.9"
+          NORMALIZED="dev-latest"
 
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "normalized=$NORMALIZED" >> $GITHUB_OUTPUT
@@ -358,6 +356,9 @@ jobs:
           egress-policy: audit
           disable-telemetry: true
 
+      - name: "Checkout repository"
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
       - name: "Download all batch artifacts"
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
         with:
@@ -493,6 +494,9 @@ jobs:
           egress-policy: audit
           disable-telemetry: true
 
+      - name: "Checkout repository"
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
       - name: "Fetch latest 3 figure releases"
         id: fetch-releases
         env:
@@ -500,12 +504,10 @@ jobs:
         run: |
           mkdir -p _site
 
-          # Get all figure releases, sorted by semver (newest first)
-          RELEASES=$(gh release list --limit 50 | grep "^figures-v" | awk '{print $1}' | \
-            sed 's/figures-v//' | \
-            sort -t'.' -k1,1rn -k2,2rn | \
-            head -3 | \
-            sed 's/^/figures-v/')
+          # Get all figure releases
+          # Match both figures-v* (versioned) and figures-dev-* (development)
+          RELEASES=$(gh release list --limit 50 | grep -E "^figures-(v[0-9]|dev-)" | awk '{print $1}' | \
+            head -3)
 
           echo "Found releases:"
           echo "$RELEASES"
