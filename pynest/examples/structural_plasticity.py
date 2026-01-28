@@ -278,7 +278,7 @@ class StructralPlasticityExample:
         ax2.set_ylabel("Connections")
         ax1.legend(loc=1)
         ax2.legend(loc=4)
-        plt.savefig("StructuralPlasticityExample.eps", format="eps")
+        plt.show()
 
     ####################################################################################
     # It is time to specify how we want to perform the simulation. In this

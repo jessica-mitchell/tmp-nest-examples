@@ -27,7 +27,14 @@ def _patched_show(*args, **kwargs):
     """Save all open figures instead of showing them."""
     global _figure_counter
 
-    figs = [plt.figure(i) for i in plt.get_fignums()]
+    # plt.pause() calls show(block=False) internally - don't save/close in that case
+    # as the figure is still being built
+    if kwargs.get('block') is False:
+        return
+
+    fig_nums = plt.get_fignums()
+    print(f"_patched_show called, fig_nums={fig_nums}")
+    figs = [plt.figure(i) for i in fig_nums]
     for fig in figs:
         _figure_counter += 1
         filename = f"{_example_name}_fig{_figure_counter:02d}.png"
@@ -73,10 +80,13 @@ def run_example(example_path, output_dir):
         # Load and execute the example
         spec = importlib.util.spec_from_file_location("example_module", example_file)
         module = importlib.util.module_from_spec(spec)
+        print(f"Executing module, plt.show is patched: {plt.show is _patched_show}")
         spec.loader.exec_module(module)
 
         # Save any remaining open figures
-        if plt.get_fignums():
+        remaining_figs = plt.get_fignums()
+        print(f"After execution, remaining figures: {remaining_figs}")
+        if remaining_figs:
             _patched_show()
 
     finally:
