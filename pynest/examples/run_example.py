@@ -43,11 +43,11 @@ def run_example(example_path, output_dir):
     """Run an example and capture its figures."""
     global _output_dir, _example_name
 
-    _output_dir = output_dir
+    _output_dir = os.path.abspath(output_dir)
     _example_name = os.path.splitext(os.path.basename(example_path))[0]
 
     # Ensure output directory exists
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(_output_dir, exist_ok=True)
 
     # Patch plt.show
     original_show = plt.show
