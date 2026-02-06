@@ -205,11 +205,22 @@ jobs:
 
       - name: "Extract NEST installation"
         run: |
-          # Extract to the original build prefix so all hardcoded paths resolve
+          # Detect the top-level directory name inside the tarball
+          TOP_DIR=$(tar -tzf nest-installation.tar.gz | head -1 | cut -d/ -f1)
+          echo "Tarball top-level directory: $TOP_DIR"
+
+          # Extract to the original build prefix so all hardcoded paths resolve.
+          # The tarball is created with `tar -C $INSTALL_DIR .` so contents
+          # (bin/, lib/, share/, etc.) are at the root — no --strip-components needed.
           NEST_PREFIX="/home/runner/work/nest-simulator/nest-simulator/build/result"
-          sudo mkdir -p "$(dirname "$NEST_PREFIX")"
-          sudo tar -xzf nest-installation.tar.gz -C "$(dirname "$NEST_PREFIX")"
+          sudo mkdir -p "$NEST_PREFIX"
+          sudo tar -xzf nest-installation.tar.gz -C "$NEST_PREFIX"
+
           echo "NEST_PREFIX=$NEST_PREFIX" >> $GITHUB_ENV
+
+          # Verify extraction
+          echo "Contents of NEST_PREFIX:"
+          ls "$NEST_PREFIX"
 
       - name: "Set up NEST environment"
         run: |
