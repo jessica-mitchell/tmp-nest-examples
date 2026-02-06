@@ -254,7 +254,9 @@ jobs:
       - name: "Install Python dependencies"
         run: |
           python -m pip install --upgrade pip
-          pip install numpy scipy matplotlib pandas h5py mpi4py cython cycler imageio requests "pulp<2.8.0" snakemake ipython psutil pydot
+          pip install numpy scipy matplotlib pandas mpi4py cython cycler imageio requests "pulp<2.8.0" snakemake ipython psutil pydot
+          # Build h5py from source against the system HDF5 to avoid version mismatch
+          HDF5_DIR=/usr pip install h5py --no-binary h5py
 
       - name: "Verify NEST installation"
         run: python -c "import nest; print(f'NEST {nest.__version__} installed successfully')"
