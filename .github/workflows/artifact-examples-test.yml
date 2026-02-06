@@ -205,18 +205,21 @@ jobs:
 
       - name: "Extract NEST installation"
         run: |
-          sudo mkdir -p /opt/nest
-          sudo tar -xzf nest-installation.tar.gz -C /opt/nest --strip-components=1
+          # Extract to the original build prefix so all hardcoded paths resolve
+          NEST_PREFIX="/home/runner/work/nest-simulator/nest-simulator/build/result"
+          sudo mkdir -p "$(dirname "$NEST_PREFIX")"
+          sudo tar -xzf nest-installation.tar.gz -C "$(dirname "$NEST_PREFIX")"
+          echo "NEST_PREFIX=$NEST_PREFIX" >> $GITHUB_ENV
 
       - name: "Set up NEST environment"
         run: |
-          echo "/opt/nest/bin" >> $GITHUB_PATH
-          echo "PYTHONPATH=/opt/nest/lib/python3.10/site-packages:$PYTHONPATH" >> $GITHUB_ENV
+          echo "${NEST_PREFIX}/bin" >> $GITHUB_PATH
+          echo "PYTHONPATH=${NEST_PREFIX}/lib/python3.10/site-packages:$PYTHONPATH" >> $GITHUB_ENV
 
           # Build LD_LIBRARY_PATH: NEST libs + bundled external dependencies
-          LD_PATHS="/opt/nest/lib/nest:/opt/nest/lib"
+          LD_PATHS="${NEST_PREFIX}/lib/nest:${NEST_PREFIX}/lib"
           for dep in sionlib libneurosim music csa; do
-            DEP_DIR="/opt/nest/extras-${dep}/lib"
+            DEP_DIR="${NEST_PREFIX}/extras-${dep}/lib"
             if [ -d "$DEP_DIR" ]; then
               LD_PATHS="${LD_PATHS}:${DEP_DIR}"
               echo "Found bundled ${dep} at ${DEP_DIR}"
