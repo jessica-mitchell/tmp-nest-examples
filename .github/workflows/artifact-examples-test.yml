@@ -248,7 +248,6 @@ jobs:
             libltdl-dev \
             libboost-filesystem-dev libboost-regex-dev libboost-wave-dev \
             libboost-python-dev libboost-program-options-dev libboost-test-dev \
-            libhdf5-dev \
             libpcre3 libpcre3-dev
 
       - name: "Install Python dependencies"
