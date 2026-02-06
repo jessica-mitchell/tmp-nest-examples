@@ -229,7 +229,7 @@ jobs:
 
           # Build LD_LIBRARY_PATH: NEST libs + bundled external dependencies
           LD_PATHS="${NEST_PREFIX}/lib/nest:${NEST_PREFIX}/lib"
-          for dep in sionlib libneurosim music csa; do
+          for dep in sionlib libneurosim music csa hdf5; do
             DEP_DIR="${NEST_PREFIX}/extras-${dep}/lib"
             if [ -d "$DEP_DIR" ]; then
               LD_PATHS="${LD_PATHS}:${DEP_DIR}"
