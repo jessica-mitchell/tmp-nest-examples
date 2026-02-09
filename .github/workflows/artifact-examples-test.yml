@@ -248,7 +248,8 @@ jobs:
             libltdl-dev \
             libboost-filesystem-dev libboost-regex-dev libboost-wave-dev \
             libboost-python-dev libboost-program-options-dev libboost-test-dev \
-            libpcre3 libpcre3-dev
+            libpcre3 libpcre3-dev \
+            libaec0
 
       - name: "Install Python dependencies"
         run: |
