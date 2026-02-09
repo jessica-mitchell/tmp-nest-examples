@@ -228,15 +228,29 @@ jobs:
           echo "PYTHONPATH=${NEST_PREFIX}/lib/python3.10/site-packages:$PYTHONPATH" >> $GITHUB_ENV
 
           # Build LD_LIBRARY_PATH: NEST libs + bundled external dependencies
+          # Put bundled HDF5 FIRST to override system HDF5 libraries
+          # This ensures bundled HDF5 (1.14.6) is used instead of system HDF5 (1.10.7)
           LD_PATHS="${NEST_PREFIX}/lib/nest:${NEST_PREFIX}/lib"
-          for dep in sionlib libneurosim music csa hdf5; do
+          for dep in hdf5 sionlib libneurosim music csa; do
             DEP_DIR="${NEST_PREFIX}/extras-${dep}/lib"
             if [ -d "$DEP_DIR" ]; then
-              LD_PATHS="${LD_PATHS}:${DEP_DIR}"
+              LD_PATHS="${DEP_DIR}:${LD_PATHS}"
               echo "Found bundled ${dep} at ${DEP_DIR}"
             fi
           done
-          echo "LD_LIBRARY_PATH=${LD_PATHS}:${LD_LIBRARY_PATH:-}" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=${LD_PATHS}" >> $GITHUB_ENV
+          
+          # Also set HDF5_DIR to help h5py find the bundled HDF5
+          if [ -d "${NEST_PREFIX}/extras-hdf5" ]; then
+            echo "HDF5_DIR=${NEST_PREFIX}/extras-hdf5" >> $GITHUB_ENV
+          fi
+          
+          # Verify bundled HDF5 is found first
+          if [ -d "${NEST_PREFIX}/extras-hdf5/lib" ]; then
+            echo "Bundled HDF5 libraries:"
+            ls -la "${NEST_PREFIX}/extras-hdf5/lib/" | head -10
+            echo "LD_LIBRARY_PATH will prioritize: ${NEST_PREFIX}/extras-hdf5/lib"
+          fi
 
       - name: "Install system dependencies"
         run: |
@@ -250,11 +264,19 @@ jobs:
             libboost-python-dev libboost-program-options-dev libboost-test-dev \
             libpcre3 libpcre3-dev \
             libaec0
+          # Do NOT install libhdf5-dev - we use bundled HDF5 from the artifact
+          # Installing it would cause version conflicts (system 1.10.7 vs bundled 1.14.6)
 
       - name: "Install Python dependencies"
         run: |
           python -m pip install --upgrade pip
+          # Install h5py - it should use bundled HDF5 libraries via LD_LIBRARY_PATH at runtime
+          # Note: h5py wheels are built against various HDF5 versions, but runtime will use
+          # bundled HDF5 from LD_LIBRARY_PATH, which should be compatible
           pip install numpy scipy matplotlib pandas h5py mpi4py cython cycler imageio requests "pulp<2.8.0" snakemake ipython psutil pydot
+          
+          # Verify which HDF5 version h5py will use at runtime
+          python -c "import h5py; print(f'h5py version: {h5py.__version__}'); import h5py.h5; print(f'HDF5 version: {h5py.h5.get_libversion()}')" || echo "Warning: Could not verify HDF5 version"
 
       - name: "Verify NEST installation"
         run: python -c "import nest; print(f'NEST {nest.__version__} installed successfully')"
