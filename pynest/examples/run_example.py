@@ -77,8 +77,9 @@ def run_example(example_path, output_dir):
         original_cwd = os.getcwd()
         os.chdir(example_dir)
 
-        # Load and execute the example
-        spec = importlib.util.spec_from_file_location("example_module", example_file)
+        # Load and execute the example as "__main__" so that
+        # `if __name__ == "__main__":` blocks run normally.
+        spec = importlib.util.spec_from_file_location("__main__", example_file)
         module = importlib.util.module_from_spec(spec)
         print(f"Executing module, plt.show is patched: {plt.show is _patched_show}")
         spec.loader.exec_module(module)
