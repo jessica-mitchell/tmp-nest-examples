@@ -225,17 +225,24 @@ jobs:
       - name: "Set up NEST environment"
         run: |
           echo "${NEST_PREFIX}/bin" >> $GITHUB_PATH
-          echo "PYTHONPATH=${NEST_PREFIX}/lib/python3.10/site-packages:$PYTHONPATH" >> $GITHUB_ENV
-
-          # Build LD_LIBRARY_PATH: NEST libs + bundled external dependencies
+          PY_PATHS="${NEST_PREFIX}/lib/python3.10/site-packages"
           LD_PATHS="${NEST_PREFIX}/lib/nest:${NEST_PREFIX}/lib"
+
+          # Add bundled external dependencies (LD_LIBRARY_PATH and PYTHONPATH)
           for dep in sionlib libneurosim music csa; do
-            DEP_DIR="${NEST_PREFIX}/extras-${dep}/lib"
-            if [ -d "$DEP_DIR" ]; then
-              LD_PATHS="${DEP_DIR}:${LD_PATHS}"
-              echo "Found bundled ${dep} at ${DEP_DIR}"
+            DEP_DIR="${NEST_PREFIX}/extras-${dep}"
+            if [ -d "${DEP_DIR}/lib" ]; then
+              LD_PATHS="${DEP_DIR}/lib:${LD_PATHS}"
+              echo "Found bundled ${dep} libs at ${DEP_DIR}/lib"
+            fi
+            DEP_PYDIR="${DEP_DIR}/lib/python3.10/site-packages"
+            if [ -d "$DEP_PYDIR" ]; then
+              PY_PATHS="${DEP_PYDIR}:${PY_PATHS}"
+              echo "Found bundled ${dep} Python packages at ${DEP_PYDIR}"
             fi
           done
+
+          echo "PYTHONPATH=${PY_PATHS}:$PYTHONPATH" >> $GITHUB_ENV
           echo "LD_LIBRARY_PATH=${LD_PATHS}" >> $GITHUB_ENV
 
       - name: "Install system dependencies"
