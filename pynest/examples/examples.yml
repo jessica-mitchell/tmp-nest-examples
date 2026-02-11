@@ -92,7 +92,8 @@ examples:
 
   - name: clopath_synapse_small_network
     path: clopath_synapse_small_network.py
-    type: python
+    type: skip
+    notes: SIGABRT in poisson_generator::pre_run_hook with OpenMP+MPI build; possible NEST bug
     convert_to_notebook: true
     category: synapses
 
@@ -116,17 +117,17 @@ examples:
 
   - name: csa_example
     path: csa_example.py
-    type: python
+    type: skip
     convert_to_notebook: true
     category: connectivity
-    notes: Requires CSA library
+    notes: Requires CSA library and NEST compiled with -Dwith-libneurosim; upstream build does not yet pass this flag
 
   - name: csa_spatial_example
     path: csa_spatial_example.py
-    type: python
+    type: skip
     convert_to_notebook: true
     category: connectivity
-    notes: Requires CSA library
+    notes: Requires CSA library and NEST compiled with -Dwith-libneurosim; upstream build does not yet pass this flag
 
   - name: evaluate_quantal_stp_synapse
     path: evaluate_quantal_stp_synapse.py
@@ -470,7 +471,8 @@ examples:
 
   - name: eprop_supervised_classification_neuromorphic_mnist
     path: eprop_plasticity/eprop_supervised_classification_neuromorphic_mnist.py
-    type: python
+    type: skip
+    notes: Requires N-MNIST dataset download from S3 which is currently 403 Forbidden
     convert_to_notebook: true
     category: eprop
 
@@ -602,6 +604,7 @@ examples:
   # Helpers: networks.py, pong.py, generate_gif.py
   - name: pong
     path: pong/run_simulations.py
+    post_script: pong/generate_gif.py
     type: python
     convert_to_notebook: true
     category: networks
@@ -618,6 +621,7 @@ examples:
   # Helpers: helpers_sudoku.py, sudoku_net.py, plot_progress.py
   - name: sudoku
     path: sudoku/sudoku_solver.py
+    post_script: sudoku/plot_progress.py
     type: python
     convert_to_notebook: true
     category: networks

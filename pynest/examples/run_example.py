@@ -5,13 +5,17 @@ Wrapper script for running NEST examples in CI.
 This script:
 1. Patches matplotlib.pyplot.show() to save figures instead of displaying
 2. Runs the specified example
-3. Collects all generated figures
+3. Optionally runs a post-script (e.g., GIF generation)
+4. Collects all generated figures and GIFs
 
-Usage: python run_example.py <example_path> <output_dir>
+Usage: python run_example.py <example_path> <output_dir> [post_script]
 """
 
 import sys
 import os
+import glob
+import shutil
+import subprocess
 import importlib.util
 import matplotlib
 matplotlib.use('Agg')  # Non-interactive backend
@@ -102,12 +106,65 @@ def run_example(example_path, output_dir):
         print(f"  - {f}")
 
 
+def run_post_script(post_script, example_path, output_dir):
+    """Run a post-processing script after the main example.
+
+    For pong/generate_gif.py: pass the timestamped output directory as argv[1].
+    For sudoku/plot_progress.py: no arguments needed, reads .pkl from cwd.
+    """
+    example_dir = os.path.dirname(os.path.abspath(example_path))
+    post_script_abs = os.path.abspath(post_script)
+    output_dir_abs = os.path.abspath(output_dir)
+
+    print(f"\n--- Running post-script: {post_script} ---")
+
+    # Build the command
+    cmd = [sys.executable, post_script_abs]
+
+    # Pong's generate_gif.py needs the simulation output directory as argv[1].
+    # The simulation creates a timestamped subdirectory in the example dir.
+    if "generate_gif" in os.path.basename(post_script):
+        # Find the timestamped directory (newest directory in example_dir)
+        subdirs = [
+            os.path.join(example_dir, d)
+            for d in os.listdir(example_dir)
+            if os.path.isdir(os.path.join(example_dir, d)) and d not in ("__pycache__", "temp")
+        ]
+        if subdirs:
+            newest = max(subdirs, key=os.path.getmtime)
+            cmd.append(newest)
+            print(f"  Passing simulation output dir: {newest}")
+        else:
+            print("  WARNING: No simulation output directory found for generate_gif.py")
+            return
+
+    print(f"  Command: {cmd}")
+    print(f"  Working directory: {example_dir}")
+
+    result = subprocess.run(cmd, cwd=example_dir, capture_output=False)
+    if result.returncode != 0:
+        print(f"  Post-script exited with code {result.returncode}")
+    else:
+        print("  Post-script completed successfully")
+
+    # Collect any .gif files from the example directory into the output directory
+    gif_files = glob.glob(os.path.join(example_dir, "*.gif"))
+    for gif in gif_files:
+        dest = os.path.join(output_dir_abs, os.path.basename(gif))
+        shutil.copy2(gif, dest)
+        print(f"  Collected GIF: {os.path.basename(gif)}")
+
+
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python run_example.py <example_path> <output_dir>")
+    if len(sys.argv) < 3 or len(sys.argv) > 4:
+        print("Usage: python run_example.py <example_path> <output_dir> [post_script]")
         sys.exit(1)
 
     example_path = sys.argv[1]
     output_dir = sys.argv[2]
+    post_script = sys.argv[3] if len(sys.argv) == 4 else None
 
     run_example(example_path, output_dir)
+
+    if post_script:
+        run_post_script(post_script, example_path, output_dir)

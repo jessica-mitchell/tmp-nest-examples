@@ -153,8 +153,8 @@ jobs:
               end = min(start + batch_size, len(examples))
               batch_examples = examples[start:end]
 
-              # Include type in batch data for handling different example types
-              batch_data = [{"name": ex["name"], "path": ex["path"], "type": ex["type"]} for ex in batch_examples]
+              # Include type and post_script in batch data for handling different example types
+              batch_data = [{"name": ex["name"], "path": ex["path"], "type": ex["type"], "post_script": ex.get("post_script", "")} for ex in batch_examples]
 
               batches.append({
                   "batch_id": i + 1,
@@ -268,7 +268,9 @@ jobs:
           pip install --no-binary=h5py h5py
 
       - name: "Verify NEST installation"
-        run: python -c "import nest; print(f'NEST {nest.__version__} installed successfully')"
+        run: |
+          python -c "import nest; print(f'NEST {nest.__version__} installed successfully')"
+
 
       - name: "Run batch: ${{ matrix.batch_name }}"
         id: run-batch
@@ -287,8 +289,8 @@ jobs:
           import sys
           examples = json.load(sys.stdin)
           for ex in examples:
-              print(f\"{ex['name']}|{ex['path']}|{ex['type']}\")
-          " | while IFS='|' read -r name path type; do
+              print(f\"{ex['name']}|{ex['path']}|{ex['type']}|{ex.get('post_script', '')}\")
+          " | while IFS='|' read -r name path type post_script; do
             echo ""
             echo "========================================"
             echo "Running: $name"
@@ -318,10 +320,14 @@ jobs:
                 cp -r "$EXAMPLE_DIR/figures/"* "outputs/$name/" 2>/dev/null || true
               fi
               # Also check for figures in the main directory
-              find "$EXAMPLE_DIR" -maxdepth 1 -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" \) -exec cp {} "outputs/$name/" \; 2>/dev/null || true
+              find "$EXAMPLE_DIR" -maxdepth 1 -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" -o -name "*.gif" \) -exec cp {} "outputs/$name/" \; 2>/dev/null || true
             else
               # Handle python examples
-              python run_example.py "$path" "outputs/$name" 2>&1 | tee "outputs/$name/run.log"
+              if [ -n "$post_script" ]; then
+                python run_example.py "$path" "outputs/$name" "$post_script" 2>&1 | tee "outputs/$name/run.log"
+              else
+                python run_example.py "$path" "outputs/$name" 2>&1 | tee "outputs/$name/run.log"
+              fi
               EXIT_CODE=${PIPESTATUS[0]}
             fi
             set -e
@@ -337,7 +343,7 @@ jobs:
             fi
 
             # Count output files
-            OUTPUT_COUNT=$(find "outputs/$name" -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" \) 2>/dev/null | wc -l)
+            OUTPUT_COUNT=$(find "outputs/$name" -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" -o -name "*.gif" \) 2>/dev/null | wc -l)
             echo "Generated $OUTPUT_COUNT figure(s)"
 
             # Append to results
@@ -445,7 +451,7 @@ jobs:
                   if [ "$example_name" != "results.json" ]; then
                     mkdir -p "figures/examples/$example_name"
                     # Copy only figure files, not logs
-                    find "$example_dir" -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" \) -exec cp {} "figures/examples/$example_name/" \; 2>/dev/null || true
+                    find "$example_dir" -type f \( -name "*.png" -o -name "*.pdf" -o -name "*.svg" -o -name "*.gif" \) -exec cp {} "figures/examples/$example_name/" \; 2>/dev/null || true
                   fi
                 fi
               done
@@ -887,7 +893,7 @@ jobs:
               example_dir = f"{version_dir}examples/{name}"
               files = []
               if os.path.isdir(example_dir):
-                  files = [f for f in os.listdir(example_dir) if f.endswith(('.png', '.pdf', '.svg'))]
+                  files = [f for f in os.listdir(example_dir) if f.endswith(('.png', '.pdf', '.svg', '.gif'))]
 
               type_badge = f" [{example_type}]" if example_type != "python" else ""
 
@@ -921,7 +927,7 @@ jobs:
           done
 
           echo "Site structure:"
-          find . -name "index.html" -o -name "*.png" | head -20
+          find . -name "index.html" -o -name "*.png" -o -name "*.gif" | head -20
 
       - name: "Setup Pages"
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
