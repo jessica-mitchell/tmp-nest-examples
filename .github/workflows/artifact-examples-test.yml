@@ -620,6 +620,23 @@ jobs:
             exit 0
           fi
 
+          # Extract skipped examples from config before changing directory
+          EXAMPLES_YML="${GITHUB_WORKSPACE}/pynest/examples/examples.yml"
+          SKIPPED_JSON=$(python3 -c "
+import json, sys
+try:
+    import yaml
+    with open('${EXAMPLES_YML}') as f:
+        data = yaml.safe_load(f)
+    skipped = [{'name': ex['name'], 'notes': ex.get('notes', '')}
+               for ex in data.get('examples', []) if ex.get('type') == 'skip']
+    print(json.dumps(skipped))
+except Exception as e:
+    sys.stderr.write(str(e) + '\n')
+    print('[]')
+")
+          echo "Skipped examples: $SKIPPED_JSON"
+
           cd _site
 
           # Create 'latest' symlink (or directory copy for compatibility)
@@ -778,6 +795,7 @@ jobs:
 
           version = "$VERSION"
           version_dir = "$VERSION_DIR"
+          skipped = json.loads('''$SKIPPED_JSON''')
 
           with open(f"{version_dir}/results.json", "r") as f:
               results = json.load(f)
@@ -832,6 +850,35 @@ jobs:
               }}
               .summary .success {{ color: #22863a; font-weight: 600; }}
               .summary .failed {{ color: #cb2431; font-weight: 600; }}
+              .skipped-section {{
+                background: white;
+                border: 1px solid #ddd;
+                border-left: 4px solid #b08800;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+              }}
+              .skipped-section summary {{
+                padding: 12px 16px;
+                cursor: pointer;
+                font-weight: 600;
+                color: #7a6000;
+                user-select: none;
+              }}
+              .skipped-section summary:hover {{ background: #fffbe6; border-radius: 8px; }}
+              .skipped-list {{
+                padding: 0 16px 12px 16px;
+                margin: 0;
+                list-style: none;
+              }}
+              .skipped-list li {{
+                padding: 4px 0;
+                font-size: 13px;
+                border-bottom: 1px solid #f0e8c0;
+              }}
+              .skipped-list li:last-child {{ border-bottom: none; }}
+              .skipped-list .skip-name {{ font-family: monospace; color: #333; }}
+              .skipped-list .skip-note {{ color: #888; margin-left: 8px; font-style: italic; }}
               .example-grid {{
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -879,8 +926,25 @@ jobs:
               <strong>Total:</strong> {total} examples |
               <span class="success">Successful: {success}</span> |
               <span class="failed">Failed: {failed}</span>
+              {f'| <span style="color:#7a6000;font-weight:600">Skipped: {len(skipped)}</span>' if skipped else ''}
             </div>
+          '''
 
+          if skipped:
+              html += f'''
+            <details class="skipped-section">
+              <summary>&#9888; Skipped examples ({len(skipped)})</summary>
+              <ul class="skipped-list">
+          '''
+              for s in sorted(skipped, key=lambda x: x["name"]):
+                  note = f'<span class="skip-note">— {s["notes"]}</span>' if s.get("notes") else ""
+                  html += f'<li><span class="skip-name">{s["name"]}</span>{note}</li>\n'
+              html += '''
+              </ul>
+            </details>
+          '''
+
+          html += '''
             <div class="example-grid">
           '''
 
@@ -905,10 +969,8 @@ jobs:
 
               if files:
                   html += '<ul>'
-                  for f in sorted(files)[:5]:  # Limit to first 5
+                  for f in sorted(files):
                       html += f'<li><a href="{name}/{f}">{f}</a></li>'
-                  if len(files) > 5:
-                      html += f'<li>... and {len(files) - 5} more</li>'
                   html += '</ul>'
 
               html += '</div>'
