@@ -471,8 +471,7 @@ examples:
 
   - name: eprop_supervised_classification_neuromorphic_mnist
     path: eprop_plasticity/eprop_supervised_classification_neuromorphic_mnist.py
-    type: skip
-    notes: Requires N-MNIST dataset download from S3 which is currently 403 Forbidden
+    type: python
     convert_to_notebook: true
     category: eprop
 
