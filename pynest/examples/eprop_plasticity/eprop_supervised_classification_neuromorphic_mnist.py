@@ -182,7 +182,7 @@ nest.set_verbosity("M_FATAL")
 # pixels. By omitting spike generators for pixels on this blocklist, we effectively reduce the total number of
 # input neurons and spike generators required, optimizing the network's resource usage.
 
-pixels_blocklist = np.loadtxt("./NMNIST_pixels_blocklist.txt")
+pixels_blocklist = np.loadtxt(os.path.join(os.path.dirname(__file__), "NMNIST_pixels_blocklist.txt"))
 
 pixels_dict = {
     "n_x": 34,  # number of pixels in horizontal direction

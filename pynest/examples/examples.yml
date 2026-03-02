@@ -473,7 +473,7 @@ examples:
     path: eprop_plasticity/eprop_supervised_classification_neuromorphic_mnist.py
     type: python
     convert_to_notebook: true
-    category: eprop
+    category: eprop_large_download
 
   - name: eprop_supervised_regression_handwriting
     path: eprop_plasticity/eprop_supervised_regression_handwriting_bsshslm_2020.py
