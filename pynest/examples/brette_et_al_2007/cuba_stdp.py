@@ -112,7 +112,7 @@ Nrec = 500  # number of neurons per population to record from
 # Build and run simulation
 
 nest.ResetKernel()
-nest.set_verbosity("M_INFO")
+nest.verbosity = nest.VerbosityLevel.INFO
 
 # Set kernel parameters
 nest.SetKernelStatus(

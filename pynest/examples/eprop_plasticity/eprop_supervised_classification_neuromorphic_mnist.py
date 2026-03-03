@@ -77,6 +77,7 @@ References
 
 import os
 import zipfile
+from pathlib import Path
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -124,8 +125,8 @@ np.random.seed(rng_seed)  # fix numpy random seed
 # stop criterion is reached. After training, the performance can be tested over a number of test iterations.
 
 group_size = 100  # number of instances over which to evaluate the learning performance, 100 for convergence
-n_iter_train = 200  # number of training iterations, 200 for convergence
-n_iter_test = 10  # number of iterations for final test
+n_iter_train = 10  # number of training iterations, 200 for convergence
+n_iter_test = 2  # number of iterations for final test
 do_early_stopping = False  # if True, stop training as soon as stop criterion fulfilled
 n_iter_validate_every = 10  # number of training iterations before validation
 n_iter_early_stop = 8  # number of iterations to average over to evaluate early stopping condition
@@ -169,7 +170,7 @@ params_setup = {
 
 nest.ResetKernel()
 nest.set(**params_setup)
-nest.set_verbosity("M_FATAL")
+nest.verbosity = nest.VerbosityLevel.FATAL
 
 # %% ###########################################################################################################
 # Create neurons
@@ -182,7 +183,7 @@ nest.set_verbosity("M_FATAL")
 # pixels. By omitting spike generators for pixels on this blocklist, we effectively reduce the total number of
 # input neurons and spike generators required, optimizing the network's resource usage.
 
-pixels_blocklist = np.loadtxt(os.path.join(os.path.dirname(__file__), "NMNIST_pixels_blocklist.txt"))
+pixels_blocklist = np.loadtxt(Path(__file__).resolve().parent / "NMNIST_pixels_blocklist.txt")
 
 pixels_dict = {
     "n_x": 34,  # number of pixels in horizontal direction
@@ -361,10 +362,10 @@ senders_in_rec, targets_in_rec = get_weight_recorder_senders_targets(weights_in_
 senders_rec_rec, targets_rec_rec = get_weight_recorder_senders_targets(weights_rec_rec, nrns_rec, nrns_rec)
 senders_rec_out, targets_rec_out = get_weight_recorder_senders_targets(weights_rec_out, nrns_rec, nrns_out)
 
-params_wr["senders"] = np.unique(np.concatenate([senders_in_rec, senders_rec_rec, senders_rec_out]))
-params_wr["targets"] = np.unique(np.concatenate([targets_in_rec, targets_rec_rec, targets_rec_out]))
-
-nest.SetStatus(wr, params_wr)
+wr.set(
+    senders=np.unique(np.concatenate([senders_in_rec, senders_rec_rec, senders_rec_out])),
+    targets=np.unique(np.concatenate([targets_in_rec, targets_rec_rec, targets_rec_out])),
+)
 
 params_common_syn_eprop = {
     "optimizer": {

@@ -152,7 +152,7 @@ class StructralPlasticityExample:
 
     def prepare_simulation(self):
         nest.ResetKernel()
-        nest.set_verbosity("M_ERROR")
+        nest.verbosity = nest.VerbosityLevel.ERROR
 
         ####################################################################################
         # We set global kernel parameters. Here we define the resolution
@@ -278,7 +278,7 @@ class StructralPlasticityExample:
         ax2.set_ylabel("Connections")
         ax1.legend(loc=1)
         ax2.legend(loc=4)
-        plt.show()
+        plt.savefig("StructuralPlasticityExample.eps", format="eps")
 
     ####################################################################################
     # It is time to specify how we want to perform the simulation. In this
