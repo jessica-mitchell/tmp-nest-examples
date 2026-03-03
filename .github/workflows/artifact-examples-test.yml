@@ -622,19 +622,20 @@ jobs:
 
           # Extract skipped examples from config before changing directory
           EXAMPLES_YML="${GITHUB_WORKSPACE}/pynest/examples/examples.yml"
-          SKIPPED_JSON=$(python3 -c "
-import json, sys
-try:
-    import yaml
-    with open('${EXAMPLES_YML}') as f:
-        data = yaml.safe_load(f)
-    skipped = [{'name': ex['name'], 'notes': ex.get('notes', '')}
-               for ex in data.get('examples', []) if ex.get('type') == 'skip']
-    print(json.dumps(skipped))
-except Exception as e:
-    sys.stderr.write(str(e) + '\n')
-    print('[]')
-")
+          SKIPPED_JSON=$(EXAMPLES_YML="$EXAMPLES_YML" python3 << 'GETSKIPPED'
+          import json, sys, os
+          try:
+              import yaml
+              with open(os.environ['EXAMPLES_YML']) as f:
+                  data = yaml.safe_load(f)
+              skipped = [{'name': ex['name'], 'notes': ex.get('notes', '')}
+                         for ex in data.get('examples', []) if ex.get('type') == 'skip']
+              print(json.dumps(skipped))
+          except Exception as e:
+              sys.stderr.write(str(e) + '\n')
+              print('[]')
+          GETSKIPPED
+          )
           echo "Skipped examples: $SKIPPED_JSON"
 
           cd _site
