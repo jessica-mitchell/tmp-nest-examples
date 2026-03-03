@@ -471,7 +471,7 @@ examples:
 
   - name: eprop_supervised_classification_neuromorphic_mnist
     path: eprop_plasticity/eprop_supervised_classification_neuromorphic_mnist.py
-    type: skip
+    type: python
     convert_to_notebook: true
     category: eprop_large_download
 
