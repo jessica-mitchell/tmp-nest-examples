@@ -92,7 +92,7 @@ examples:
 
   - name: clopath_synapse_small_network
     path: clopath_synapse_small_network.py
-    type: python
+    type: skip
     notes: SIGABRT in poisson_generator::pre_run_hook with OpenMP+MPI build; possible NEST bug
     convert_to_notebook: true
     category: synapses

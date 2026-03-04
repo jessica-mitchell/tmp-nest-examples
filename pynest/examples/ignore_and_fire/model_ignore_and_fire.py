@@ -125,7 +125,7 @@ class Model:
         )
         np.random.seed(self.pars["seed"])
 
-        nest.set_verbosity(self.pars["nest_verbosity"])
+        nest.verbosity(self.pars["nest_verbosity"])
 
         # configure neuron and synapse models
         if self.pars["neuron_model"] == "iaf_psc_alpha":
