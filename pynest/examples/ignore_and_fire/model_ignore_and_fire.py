@@ -113,7 +113,7 @@ class Model:
         nest.ResetKernel()
         nest.SetKernelStatus(
             {
-                "tics_per_ms": 1.0 * self.pars["tics_per_step"] / self.pars["dt"],
+                "tics_per_ms": int(self.pars["tics_per_step"] / self.pars["dt"]),
                 "resolution": self.pars["dt"],
                 "print_time": self.pars["print_simulation_progress"],
                 "local_num_threads": self.pars["n_threads"],
