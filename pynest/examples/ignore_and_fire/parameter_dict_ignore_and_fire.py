@@ -41,24 +41,21 @@ pars["allow_multapses"] = True
 
 # neuron parameters
 
-# pars["neuron_model"] = "iaf_psc_alpha"
 pars["neuron_model"] = "ignore_and_fire"
 
-pars["E_L"] = 0.0  # resting membrane potential(mV)
-pars["C_m"] = 250.0  # membrane capacity (pF)
-pars["tau_m"] = 20.0  # membrane time constant (ms)
-pars["t_ref"] = 2.0  # duration of refractory period (ms)
-pars["theta"] = 20.0  # spike threshold(mV)
-pars["V_reset"] = 0.0  # reset potential(mV)
+pars["E_L"] = 0.0
+pars["C_m"] = 250.0
+pars["tau_m"] = 20.0
+pars["t_ref"] = 2.0
+pars["theta"] = 20.0
+pars["V_reset"] = 0.0
 
-# needed for ignore_and_fire version of the model
 pars["ignore_and_fire_pars"] = {}
 pars["ignore_and_fire_pars"]["rate_dist"] = [0.5, 1.5]
 pars["ignore_and_fire_pars"]["phase_dist"] = [0.01, 1.0]
 
-# stimulus parameters
-pars["I_DC"] = 0.0  # (constant) external input current (pA)
-pars["eta"] = 1.2  # rate of external Poissonian sources relative to threshold rate
+pars["I_DC"] = 0.0
+pars["eta"] = 1.2
 
 # synapse parameters
 pars["J_E"] = 0.5  # EPSP amplitude (mV)
@@ -78,22 +75,14 @@ pars["V_init_min"] = pars["E_L"]  # min of initial membrane potential (mV)
 pars["V_init_max"] = pars["theta"]  # max of initial membrane potential (mV)
 
 # data recording
-pars["record_spikes"] = False  # if True: set up spike detectors and record spikes
-pars["N_rec_spikes"] = "all"  # number of neurons to record spikes from; if "all", spikes from all neurons are recorded
+pars["record_spikes"] = False
+pars["N_rec_spikes"] = "all"
 
-# pars["record_weights"] = False           # True: record weights of plastic synapses
-# pars["weight_recording_start_time"] = 0. # start time of weight recording (ms)
-
-# simulation parameters
-pars["T"] = 10000.0  # simulation time
-pars["dt"] = 2**-3  # simulation resolution (ms)  !!! revise documentation (incl delay)
-pars["tics_per_step"] = 2**7  # number of tics per time step (defines resolution of time variables in NEST)
-pars["seed"] = 1  # seed for random number generator
-pars["n_threads"] = 4  # number of threads for simulation
-# (note: varying the number of threads leads to different random-number sequences,
-# and, hence, to different results)
-
-pars["print_simulation_progress"] = True  # print network time and realtime factor
-pars["nest_verbosity"] = "M_WARNING"  # "M_FATAL", "M_ERROR", "M_WARNING", "M_DEPRECATED", "M_INFO", "M_ALL"
+pars["T"] = 10000.0
+pars["dt"] = 2**-3
+pars["tics_per_step"] = 2**7
+pars["seed"] = 1
+pars["n_threads"] = 4
+pars["print_simulation_progress"] = True
 
 pars["data_path"] = "data"

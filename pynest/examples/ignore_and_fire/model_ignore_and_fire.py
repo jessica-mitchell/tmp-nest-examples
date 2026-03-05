@@ -111,21 +111,19 @@ class Model:
 
         # initialize NEST kernel
         nest.ResetKernel()
-        nest.SetKernelStatus(
-            {
-                "tics_per_ms": int(self.pars["tics_per_step"] / self.pars["dt"]),
-                "resolution": self.pars["dt"],
-                "print_time": self.pars["print_simulation_progress"],
-                "local_num_threads": self.pars["n_threads"],
-                "rng_seed": self.pars["seed"],
-                "dict_miss_is_error": True,
-                "data_path": self.pars["data_path"],
-                "overwrite_files": True,
-            }
+        nest.set(
+            tics_per_ms=int(self.pars["tics_per_step"] / self.pars["dt"]),
+            resolution=self.pars["dt"],
+            print_time=self.pars["print_simulation_progress"],
+            local_num_threads=self.pars["n_threads"],
+            rng_seed=self.pars["seed"],
+            dict_miss_is_error=True,
+            data_path=self.pars["data_path"],
+            overwrite_files=True,
         )
         np.random.seed(self.pars["seed"])
 
-        nest.verbosity(self.pars["nest_verbosity"])
+        nest.verbosity = "M_WARNING"
 
         # configure neuron and synapse models
         if self.pars["neuron_model"] == "iaf_psc_alpha":
@@ -143,7 +141,16 @@ class Model:
                 "V_m": self.pars["V_init_min"],
             }
         elif self.pars["neuron_model"] == "ignore_and_fire":
-            self.__neuron_params = {}
+            self.__neuron_params = {
+                "rate": nest.random.uniform(
+                    min=self.pars["ignore_and_fire_pars"]["rate_dist"][0],
+                    max=self.pars["ignore_and_fire_pars"]["rate_dist"][1],
+                ),
+                "phase": nest.random.uniform(
+                    min=self.pars["ignore_and_fire_pars"]["phase_dist"][0],
+                    max=self.pars["ignore_and_fire_pars"]["phase_dist"][1],
+                ),
+            }
 
     def __derived_parameters(self, parameters):
         """
@@ -201,26 +208,10 @@ class Model:
         pop_all = nest.Create(self.pars["neuron_model"], self.pars["N"], self.__neuron_params)  # overall population
 
         if self.pars["neuron_model"] == "iaf_psc_alpha":
-            # pop_all = nest.Create("iaf_psc_alpha", self.pars["N"], self.__neuron_params) # overall population
-            # set random initial membrane potentials
             random_vm = nest.random.uniform(self.pars["V_init_min"], self.pars["V_init_max"])
-            nest.GetLocalNodeCollection(pop_all).V_m = random_vm
+            pop_all.V_m = random_vm
         elif self.pars["neuron_model"] == "ignore_and_fire":
-            # pop_all = nest.Create("ignore_and_fire", self.pars["N"]) # overall population
-            # pop_all.rate = np.random.uniform(low=self.pars["ignore_and_fire_pars"]["rate_dist"][0],high=self.pars
-            # ["ignore_and_fire_pars"]["rate_dist"][1],size=self.pars["N"])
-            # pop_all.phase = np.random.uniform(low=self.pars["ignore_and_fire_pars"]["phase_dist"][0],
-            # high=self.pars["ignore_and_fire_pars"]["phase_dist"][1],size=self.pars["N"])
-
-            # better, but not working yet:
-            pop_all.rate = nest.random.uniform(
-                min=self.pars["ignore_and_fire_pars"]["rate_dist"][0],
-                max=self.pars["ignore_and_fire_pars"]["rate_dist"][1],
-            )
-            pop_all.phase = nest.random.uniform(
-                min=self.pars["ignore_and_fire_pars"]["phase_dist"][0],
-                max=self.pars["ignore_and_fire_pars"]["phase_dist"][1],
-            )
+            pass
 
         pop_E = pop_all[: self.pars["N_E"]]  # population of excitatory neurons
         pop_I = pop_all[self.pars["N_E"] :]  # population of inhibitory neurons

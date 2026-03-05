@@ -1,98 +1,123 @@
+#!/usr/bin/env snakemake
+
+"""
+Snakefile for ignore_and_fire example
+
+This workflow simulates a balanced random network with STDP synapses using
+either integrate-and-fire (iaf_psc_alpha) or ignore-and-fire neurons,
+and generates figures for documentation.
+
+Usage:
+    snakemake -c4    # Run with 4 cores
+    snakemake        # Run with default settings
+    snakemake clean  # Clean up generated files
+"""
+
+# Configuration
+NEURON_MODELS = ["iaf_psc_alpha", "ignore_and_fire"]
+
 
 rule all:
     """
     Runs simulations and creates all figures for the ignore-and-fire usecase documentation.
     """
     input:
-        'figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_spikes.png',
-        'figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_weight_distributions.png',
-        'figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_connectivity_presim.png',
-        'figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_connectivity_postsim.png',
-        'figures/TwoPopulationNetworkPlastic_ignore_and_fire_spikes.png',
-        'figures/TwoPopulationNetworkPlastic_ignore_and_fire_weight_distributions.png',
-        'figures/TwoPopulationNetworkPlastic_ignore_and_fire_connectivity_presim.png',
-        'figures/TwoPopulationNetworkPlastic_ignore_and_fire_connectivity_postsim.png',
-        'figures/scaling.png'
+        # LIF figures
+        "figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_spikes.png",
+        "figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_weight_distributions.png",
+        "figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_connectivity_presim.png",
+        "figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_connectivity_postsim.png",
+        # Ignore-and-fire figures
+        "figures/TwoPopulationNetworkPlastic_ignore_and_fire_spikes.png",
+        "figures/TwoPopulationNetworkPlastic_ignore_and_fire_weight_distributions.png",
+        "figures/TwoPopulationNetworkPlastic_ignore_and_fire_connectivity_presim.png",
+        "figures/TwoPopulationNetworkPlastic_ignore_and_fire_connectivity_postsim.png",
+        # Scaling figure
+        "figures/scaling.png",
 
-rule generate_reference_data_LIF:
+
+rule simulate_lif:
     """
-    Simulates network with LIF neurons, and stores spikes and synaptic weights.
+    Simulate network with LIF neurons and store spikes and synaptic weights.
     """
     input:
-        'model_ignore_and_fire.py',
-        'parameter_dict_ignore_and_fire.py',
-        'generate_reference_data_ignore_and_fire.py'
+        "model_ignore_and_fire.py",
+        "parameter_dict_ignore_and_fire.py",
+        "generate_reference_data_ignore_and_fire.py"
     output:
-        temp('.LIF_simulation_done')
-    run:
-        shell('python3 generate_reference_data_ignore_and_fire.py iaf_psc_alpha; touch {output}')
+        temp(".LIF_simulation_done")
+    shell:
+        "python3 generate_reference_data_ignore_and_fire.py iaf_psc_alpha; touch {output}"
 
-rule generate_reference_data_IgAF:
+
+rule simulate_ignore_and_fire:
     """
-    Simulates network with ignore-and-fire neurons, and stores spikes and synaptic weights.
+    Simulate network with ignore-and-fire neurons and store spikes and synaptic weights.
     """
     input:
-        'model_ignore_and_fire.py',
-        'parameter_dict_ignore_and_fire.py',
-        'generate_reference_data_ignore_and_fire.py'
+        "model_ignore_and_fire.py",
+        "parameter_dict_ignore_and_fire.py",
+        "generate_reference_data_ignore_and_fire.py"
     output:
-        temp('.IgAF_simulation_done')
-    run:
-        shell('python3 generate_reference_data_ignore_and_fire.py ignore_and_fire; touch {output}')
+        temp(".IgAF_simulation_done")
+    shell:
+        "python3 generate_reference_data_ignore_and_fire.py ignore_and_fire; touch {output}"
 
-rule generate_reference_figures_LIF:
+
+rule figures_lif:
     """
-    Creates figures showing spiking activity, weight matrices and weight distributions
-    before and after simulations from data obtained by simulating the model
-    with LIF neurons.
+    Create figures for LIF neuron simulation.
     """
     input:
-        'model_ignore_and_fire.py',
-        'parameter_dict_ignore_and_fire.py',
-        'generate_reference_figures_ignore_and_fire.py',
-        '.LIF_simulation_done'
+        "model_ignore_and_fire.py",
+        "parameter_dict_ignore_and_fire.py",
+        "generate_reference_figures_ignore_and_fire.py",
+        ".LIF_simulation_done"
     output:
-        'figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_spikes.png',
-        'figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_weight_distributions.png',
-        'figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_connectivity_presim.png',
-        'figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_connectivity_postsim.png',
-    run:
-        shell('python3 generate_reference_figures_ignore_and_fire.py iaf_psc_alpha')
+        "figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_spikes.png",
+        "figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_weight_distributions.png",
+        "figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_connectivity_presim.png",
+        "figures/TwoPopulationNetworkPlastic_iaf_psc_alpha_connectivity_postsim.png",
+    shell:
+        "python3 generate_reference_figures_ignore_and_fire.py iaf_psc_alpha"
 
-rule generate_reference_figures_IgAF:
+
+rule figures_ignore_and_fire:
     """
-    Creates figures showing spiking activity, weight matrices and weight distributions
-    before and after simulations from data obtained by simulating the model
-    with ignore_and_fire neurons.
+    Create figures for ignore-and-fire neuron simulation.
     """
     input:
-        'model_ignore_and_fire.py',
-        'parameter_dict_ignore_and_fire.py',
-        'generate_reference_figures_ignore_and_fire.py',
-        '.IgAF_simulation_done'
+        "model_ignore_and_fire.py",
+        "parameter_dict_ignore_and_fire.py",
+        "generate_reference_figures_ignore_and_fire.py",
+        ".IgAF_simulation_done"
     output:
-        'figures/TwoPopulationNetworkPlastic_ignore_and_fire_spikes.png',
-        'figures/TwoPopulationNetworkPlastic_ignore_and_fire_weight_distributions.png',
-        'figures/TwoPopulationNetworkPlastic_ignore_and_fire_connectivity_presim.png',
-        'figures/TwoPopulationNetworkPlastic_ignore_and_fire_connectivity_postsim.png',
-    run:
-        shell('python3 generate_reference_figures_ignore_and_fire.py ignore_and_fire')
+        "figures/TwoPopulationNetworkPlastic_ignore_and_fire_spikes.png",
+        "figures/TwoPopulationNetworkPlastic_ignore_and_fire_weight_distributions.png",
+        "figures/TwoPopulationNetworkPlastic_ignore_and_fire_connectivity_presim.png",
+        "figures/TwoPopulationNetworkPlastic_ignore_and_fire_connectivity_postsim.png",
+    shell:
+        "python3 generate_reference_figures_ignore_and_fire.py ignore_and_fire"
 
-rule scaling_experiment:
+
+rule scaling:
     """
-    Performs scaling experiments with LIF and ignore-and-fire neurons,
-    and creates figure showing the simulation times, average firing rates,
-    and synaptic weights for a range of network sizes.
+    Perform scaling experiments and create scaling figure.
     """
     input:
-        'model_ignore_and_fire.py',
-        'parameter_dict_ignore_and_fire.py',
-        'scaling_ignore_and_fire.py'
+        "model_ignore_and_fire.py",
+        "parameter_dict_ignore_and_fire.py",
+        "scaling_ignore_and_fire.py"
     output:
-        'figures/scaling.png'
-    run:
-        shell('python3 scaling_ignore_and_fire.py')
+        "figures/scaling.png"
+    shell:
+        "python3 scaling_ignore_and_fire.py"
+
+
 rule clean:
-    run:
-        shell("rm figures/*")
-        shell("rm -rf data/*")
+    """
+    Clean up generated figures and data files.
+    """
+    shell:
+        "rm -f figures/*.png"
+        "rm -rf data/*"
