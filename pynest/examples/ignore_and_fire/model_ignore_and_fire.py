@@ -123,7 +123,7 @@ class Model:
         )
         np.random.seed(self.pars["seed"])
 
-        nest.verbosity = "M_WARNING"
+        nest.verbosity = nest.VerbosityLevel.WARNING
 
         # configure neuron and synapse models
         if self.pars["neuron_model"] == "iaf_psc_alpha":
